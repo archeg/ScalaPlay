@@ -8,8 +8,28 @@
         <option name="jdk" value="1.7" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/algoChallenges" />
+            <option value="$PROJECT_DIR$/algoChallenges/project" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/common/project" />
+            <option value="$PROJECT_DIR$/generalLearning" />
+            <option value="$PROJECT_DIR$/generalLearning/project" />
+            <option value="$PROJECT_DIR$/macrosExtension" />
+            <option value="$PROJECT_DIR$/macrosExtension/project" />
+            <option value="$PROJECT_DIR$/ninetyNineScalaProblems" />
             <option value="$PROJECT_DIR$/ninetyNineScalaProblems/project" />
-            <option value="$PROJECT_DIR$/ninetyNineScalaProblems/project/project" />
+            <option value="$PROJECT_DIR$/project" />
+            <option value="$PROJECT_DIR$/scalaz_learn" />
+            <option value="$PROJECT_DIR$/scalaz_learn/project" />
+            <option value="$PROJECT_DIR$/shapeless" />
+            <option value="$PROJECT_DIR$/shapeless/project" />
+            <option value="$PROJECT_DIR$/taskSolving" />
+            <option value="$PROJECT_DIR$/taskSolving/project" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/test/project" />
+            <option value="$PROJECT_DIR$/whyScala" />
+            <option value="$PROJECT_DIR$/whyScala/project" />
           </set>
         </option>
         <option name="resolveClassifiers" value="true" />
@@ -19,8 +39,28 @@
         <option name="useOurOwnAutoImport" value="true" />
         <option name="myModules">
           <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/algoChallenges" />
+            <option value="$PROJECT_DIR$/algoChallenges/project" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/common/project" />
+            <option value="$PROJECT_DIR$/generalLearning" />
+            <option value="$PROJECT_DIR$/generalLearning/project" />
+            <option value="$PROJECT_DIR$/macrosExtension" />
+            <option value="$PROJECT_DIR$/macrosExtension/project" />
+            <option value="$PROJECT_DIR$/ninetyNineScalaProblems" />
             <option value="$PROJECT_DIR$/ninetyNineScalaProblems/project" />
-            <option value="$PROJECT_DIR$/ninetyNineScalaProblems/project/project" />
+            <option value="$PROJECT_DIR$/project" />
+            <option value="$PROJECT_DIR$/scalaz_learn" />
+            <option value="$PROJECT_DIR$/scalaz_learn/project" />
+            <option value="$PROJECT_DIR$/shapeless" />
+            <option value="$PROJECT_DIR$/shapeless/project" />
+            <option value="$PROJECT_DIR$/taskSolving" />
+            <option value="$PROJECT_DIR$/taskSolving/project" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/test/project" />
+            <option value="$PROJECT_DIR$/whyScala" />
+            <option value="$PROJECT_DIR$/whyScala/project" />
           </set>
         </option>
       </SbtProjectSettings>

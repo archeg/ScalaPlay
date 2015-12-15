@@ -18,6 +18,8 @@ trait ChapterApp extends App {
     println(resultString)
   }
 
+  //val illTyped = shapeless.test.illTyped
+
   protected def newExampleG(str: String)(block: => Unit) {
     newExample(str)
     block

@@ -19,6 +19,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../ninetyNineScalaProblems/target/scala-2.11/resource_managed/test" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../ninetyNineScalaProblems/target" />
       <excludeFolder url="file://$MODULE_DIR$/../../ninetyNineScalaProblems/target/resolution-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ninetyNineScalaProblems/target/scala-2.10" />
       <excludeFolder url="file://$MODULE_DIR$/../../ninetyNineScalaProblems/target/streams" />
     </content>
     <orderEntry type="inheritedJdk" />
