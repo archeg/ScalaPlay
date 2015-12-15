@@ -28,6 +28,8 @@
             <option value="$PROJECT_DIR$/taskSolving/project" />
             <option value="$PROJECT_DIR$/test" />
             <option value="$PROJECT_DIR$/test/project" />
+            <option value="$PROJECT_DIR$/whyScala" />
+            <option value="$PROJECT_DIR$/whyScala/project" />
           </set>
         </option>
         <option name="resolveClassifiers" value="true" />
@@ -57,6 +59,8 @@
             <option value="$PROJECT_DIR$/taskSolving/project" />
             <option value="$PROJECT_DIR$/test" />
             <option value="$PROJECT_DIR$/test/project" />
+            <option value="$PROJECT_DIR$/whyScala" />
+            <option value="$PROJECT_DIR$/whyScala/project" />
           </set>
         </option>
       </SbtProjectSettings>

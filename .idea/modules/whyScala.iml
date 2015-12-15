@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="generalLearning" external.linked.project.path="$MODULE_DIR$/../../generalLearning" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+<module external.linked.project.id="whyScala" external.linked.project.path="$MODULE_DIR$/../../whyScala" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../../generalLearning/target/scala-2.11/classes" />
-    <output-test url="file://$MODULE_DIR$/../../generalLearning/target/scala-2.11/test-classes" />
+    <output url="file://$MODULE_DIR$/../../whyScala/target/scala-2.11/classes" />
+    <output-test url="file://$MODULE_DIR$/../../whyScala/target/scala-2.11/test-classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../generalLearning">
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/main/scala" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/main/scala-2.11" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/target/scala-2.11/src_managed/main" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/test/scala" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/test/scala-2.11" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/target/scala-2.11/src_managed/test" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/target/scala-2.11/resource_managed/main" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/src/test/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../generalLearning/target/scala-2.11/resource_managed/test" type="java-test-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/../../generalLearning/target" />
-      <excludeFolder url="file://$MODULE_DIR$/../../generalLearning/target/resolution-cache" />
-      <excludeFolder url="file://$MODULE_DIR$/../../generalLearning/target/streams" />
+    <content url="file://$MODULE_DIR$/../../whyScala">
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/main/scala-2.11" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/target/scala-2.11/src_managed/main" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/test/scala" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/test/scala-2.11" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/target/scala-2.11/src_managed/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/target/scala-2.11/resource_managed/main" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../whyScala/target/scala-2.11/resource_managed/test" type="java-test-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../../whyScala/target" />
+      <excludeFolder url="file://$MODULE_DIR$/../../whyScala/target/resolution-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/../../whyScala/target/streams" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -81,19 +81,6 @@
         </JAVADOC>
         <SOURCES>
           <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-swing_2.11/srcs/scala-swing_2.11-2.0.0-M2-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="SBT: org.scala-lang.modules:scala-xml_2.11:1.0.4:jar">
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/bundles/scala-xml_2.11-1.0.4.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/docs/scala-xml_2.11-1.0.4-javadoc.jar!/" />
-        </JAVADOC>
-        <SOURCES>
-          <root url="jar://$USER_HOME$/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/srcs/scala-xml_2.11-1.0.4-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

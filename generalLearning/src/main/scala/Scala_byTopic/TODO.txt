@@ -1,0 +1,25 @@
+Simple scala features:
+* Futures/Promises
+* scala's parallel collection library
+* Option/ Some
+* Try and Functional error handling
+* HKT
+* ClassTag
+* string interpolation
+* value classes http://docs.scala-lang.org/overviews/core/value-classes.html
+
+Scala modules:
+* macros
+* reflection
+
+Scala libraries
+* Akka
+* Play framework
+* Spark
+* TypeSafe reactive?
+* DB ??
+
+Extended scala functionality:
+* scalaz
+* shapeless
+* Monocle & Lenses: https://github.com/julien-truffaut/Monocle

@@ -16,9 +16,14 @@ lazy val test = project.dependsOn(common, macrosExtension)
 lazy val ninetyNineScalaProblems = project.dependsOn(common)
 lazy val algoChallenges = project.dependsOn(common)
 lazy val taskSolving = project.dependsOn(common)
-lazy val generalLearning = project.dependsOn(common).settings {
+lazy val whyScala = project.dependsOn(common, macrosExtension).settings {
   libraryDependencies ++= Seq(
-    "org.scala-lang.modules" %% "scala-xml" % "1.0.5",
+    "org.scala-lang.modules" % "scala-parser-combinators_2.11" % "1.0.4",
+    "org.scala-lang.modules" %% "scala-swing" % "2.0.0-M2")
+}
+lazy val generalLearning = project.dependsOn(common, macrosExtension).settings {
+  libraryDependencies ++= Seq(
+    "org.scala-lang.modules" %% "scala-xml" % "1.0.4",
     "org.scala-lang.modules" % "scala-parser-combinators_2.11" % "1.0.4",
     "org.scala-lang.modules" %% "scala-swing" % "2.0.0-M2")
 

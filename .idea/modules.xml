@@ -24,6 +24,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/taskSolving-build.iml" filepath="$PROJECT_DIR$/.idea/modules/taskSolving-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test.iml" filepath="$PROJECT_DIR$/.idea/modules/test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-build.iml" filepath="$PROJECT_DIR$/.idea/modules/test-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/whyScala.iml" filepath="$PROJECT_DIR$/.idea/modules/whyScala.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/whyScala-build.iml" filepath="$PROJECT_DIR$/.idea/modules/whyScala-build.iml" />
     </modules>
   </component>
 </project>
