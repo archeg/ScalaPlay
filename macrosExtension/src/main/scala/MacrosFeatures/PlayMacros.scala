@@ -10,7 +10,6 @@ import scala.reflect.macros.blackbox.Context
   * Created by archeg on 11/19/2015.
   */
 object PlayMacros {
-  import language.experimental.macros
 
   def my_impl[A: c.WeakTypeTag](c: Context)(a: c.Expr[A]): c.Expr[Unit] = {
     import c.universe._

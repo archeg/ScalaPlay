@@ -12,6 +12,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/macrosExtension-build.iml" filepath="$PROJECT_DIR$/.idea/modules/macrosExtension-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ninetyNineScalaProblems.iml" filepath="$PROJECT_DIR$/.idea/modules/ninetyNineScalaProblems.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ninetyNineScalaProblems-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ninetyNineScalaProblems-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ninetyNineScalaProblems/.idea/modules/ninetyninescalaproblems.iml" filepath="$PROJECT_DIR$/ninetyNineScalaProblems/.idea/modules/ninetyninescalaproblems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ninetyNineScalaProblems/.idea/modules/ninetyninescalaproblems-build.iml" filepath="$PROJECT_DIR$/ninetyNineScalaProblems/.idea/modules/ninetyninescalaproblems-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/play.iml" filepath="$PROJECT_DIR$/.idea/modules/play.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/play-build.iml" filepath="$PROJECT_DIR$/.idea/modules/play-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/shapeless/project/.idea/modules/project.iml" filepath="$PROJECT_DIR$/shapeless/project/.idea/modules/project.iml" />

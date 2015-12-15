@@ -1,0 +1,1 @@
+scalacOptions += "-language:experimental.macros"

@@ -105,6 +105,7 @@ trait ChapterApp extends App {
     Predef.println((" " + s + " ").padTo((length / 1.5).toInt, pattern).reverse.padTo(length, pattern).reverse.mkString)
   }
 
+  def +++(s: String) { Predef.println("+++ " + s) }
   def -------------- { --------------("") }
   def --------------(s: String) { newChapter(s, "-")}
   def =============================================(s: String) {

@@ -9,7 +9,6 @@ package MacrosFeatures
   */
 object Main {
 
-  import scala.language.experimental.macros
   import scala.reflect.macros.blackbox.Context
   object LoggerImpl {
     def logImpl(c: Context)(msg: c.Expr[String]): c.Expr[Unit] = {
