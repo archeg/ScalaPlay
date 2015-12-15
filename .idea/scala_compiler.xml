@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <option name="macros" value="true" />
+    <option name="experimental" value="true" />
+    <parameters>
+      <parameter value="-print" />
+    </parameters>
+    <profile name="SBT 3" modules="root,algochallenges,tasksolving,macrosextension,generallearning,project,play,algoChallenges,common,generalLearning,macrosExtension,ninetyNineScalaProblems,scalaz_learn,shapeless,taskSolving,test" />
+  </component>
+</project>
