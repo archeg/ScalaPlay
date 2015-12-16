@@ -51,7 +51,7 @@ trait ChapterApp extends App {
 
   private val length = 120
 
-  def out(a: Any) = {
+  def out[T](a: T) = {
     println(a)
     new Asserter(a)
   }
@@ -78,6 +78,36 @@ trait ChapterApp extends App {
   def asrt(a: Any) = {
     new Asserter(a)
   }
+
+  import scala.reflect.runtime.universe._
+  def kind[A: TypeTag]: String = {
+    def typeKind(sig: Type): String = sig match {
+      case PolyType(params, resultType) =>
+        (params map { p =>
+          typeKind(p.typeSignature) match {
+            case "*" => "*"
+            case s   => "(" + s + ")"
+          }
+        }).mkString(" -> ") + " -> *"
+      case _ => "*"
+    }
+    def typeSig(tpe: Type): Type = tpe match {
+      case SingleType(pre, sym) => sym.companionSymbol.typeSignature
+      case ExistentialType(q, TypeRef(pre, sym, args)) => sym.typeSignature
+      case TypeRef(pre, sym, args) => sym.typeSignature
+    }
+    val sig = typeSig(typeOf[A])
+    val s = typeKind(sig)
+    sig.typeSymbol.name + "'s kind is " + s + ". " + (s match {
+      case "*" =>
+        "This is a proper type."
+      case x if !(x contains "(") =>
+        "This is a type constructor: a 1st-order-kinded type."
+      case x =>
+        "This is a type constructor that takes type constructor(s): a higher-kinded type."
+    })
+  }
+
 
   def time[T](label: String = "")(a: => T) = {
     val now = System.currentTimeMillis()
@@ -116,7 +146,7 @@ trait ChapterApp extends App {
     println()
   }
 
-  class Asserter(a: Any) {
+  class Asserter[T](a: T) {
     def ===(b: Any) {
       assert(a == b, s"Answer| Exprected :\r\n$a\r\n$b")
     }
@@ -133,10 +163,12 @@ trait ChapterApp extends App {
       assert(a.getClass == t, s"Answer| Expected (type comparison):\r\n${a.getClass}\r\n${t}")
     }
 
-    def ofType[T : ClassTag](): Unit =  a match {
-      case _ : T => ()
-      case _ => assert(false, s"Answer| Expected (type comparison):\r\n${a.getClass}\r\n${implicitly[ClassTag[T]]}")
-    }
+    def ofType[K : ClassTag](implicit ev: ClassTag[T]): Unit =  {
+      val tag = implicitly[ClassTag[K]]
+      a match {
+        case tag(t) => {println(t)}
+        case _ => assert(false, s"Answer| Expected (type comparison):\r\n${a.getClass}\r\n${implicitly[ClassTag[K]]}")
+    }}
 
     def assrt(partialFunction: PartialFunction[Any, Boolean]) = Predef.assert(partialFunction(a))
 

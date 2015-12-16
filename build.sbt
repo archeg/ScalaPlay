@@ -15,9 +15,10 @@ lazy val scalazDep = Seq(
 lazy val swingDep = Seq("org.scala-lang.modules" %% "scala-swing" % "2.0.0-M2")
 lazy val parserDep = Seq("org.scala-lang.modules" % "scala-parser-combinators_2.11" % "1.0.4")
 lazy val xmlDep = Seq("org.scala-lang.modules" %% "scala-xml" % "1.0.4")
+lazy val reflectDep = Seq("org.scala-lang" % "scala-reflect" % "2.11.7")
 
 lazy val common = project.settings {
-  libraryDependencies ++= shapelessDep
+  libraryDependencies ++= (shapelessDep ++ reflectDep)
 }
 
 lazy val shapeless = project.dependsOn(common).settings {
