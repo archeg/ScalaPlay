@@ -8,7 +8,7 @@ lazy val shapelessDep = Seq("com.chuusai" %% "shapeless" % "2.2.5")
 lazy val scalazDep = Seq(
   "org.scalaz" %% "scalaz-core" % scalazVersion,
   "org.scalaz" %% "scalaz-effect" % scalazVersion,
-  //"org.scalaz" %% "scalaz-typelevel" % "7.1.6",
+  //"org.scalaz" %% "scalaz-typelevel" % scalazVersion,
   "org.scalaz" %% "scalaz-scalacheck-binding" % scalazVersion % "test"
 )
 
@@ -31,6 +31,9 @@ lazy val scalaz_learn = project.dependsOn(common).settings {
     libraryDependencies ++= scalazDep
   }.settings {
   initialCommands in console := "import scalaz._, Scalaz._"
+  }.settings {
+  // For sbt test:console
+  initialCommands in console in Test := "import scalaz._, Scalaz._, scalacheck.ScalazProperties._, scalacheck.ScalazArbitrary._,scalacheck.ScalaCheckBinding._"
 }
 
 lazy val test = project.dependsOn(common, macrosExtension)

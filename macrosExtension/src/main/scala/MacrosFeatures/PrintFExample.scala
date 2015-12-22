@@ -10,6 +10,7 @@ package MacrosFeatures
 object PrintFExample {
   import scala.collection.mutable.{ListBuffer, Stack}
   import scala.reflect.macros.blackbox.Context
+  import scala.language.experimental.macros
 
   def printff(format: String, params: Any*): Unit = macro printf_impl
   def printf_impl(c: Context)(format: c.Expr[String], params: c.Expr[Any]*): c.Expr[Unit] = {

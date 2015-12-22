@@ -11,6 +11,7 @@ import scala.reflect.macros.blackbox.Context
   */
 object MacrosPrintTest {
 
+  import scala.language.experimental.macros
   def printf_test(): Unit = macro printf_impl
   def printf_impl(c: Context)(): c.Expr[Unit] = {
     import c.universe._

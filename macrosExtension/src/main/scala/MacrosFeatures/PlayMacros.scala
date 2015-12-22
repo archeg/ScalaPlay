@@ -11,6 +11,7 @@ import scala.reflect.macros.blackbox.Context
   */
 object PlayMacros {
 
+  import scala.language.experimental.macros
   def my_impl[A: c.WeakTypeTag](c: Context)(a: c.Expr[A]): c.Expr[Unit] = {
     import c.universe._
 
