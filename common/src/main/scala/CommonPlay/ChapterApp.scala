@@ -42,11 +42,17 @@ trait ChapterApp extends App {
   }
 
   protected def error(x: => Unit) {
+    var errorHappened = false
     try {
       x
     } catch {
-      case ex => println(s"$ex happened.")
+      case ex =>
+        errorHappened = true
+        println(s"$ex happened.")
     }
+
+    if (!errorHappened)
+      assert(false)
   }
 
   private val length = 120
@@ -141,9 +147,9 @@ trait ChapterApp extends App {
   def -------------- { --------------("") }
   def --------------(s: String) { newChapter(s, "-")}
   def =============================================(s: String) {
-    println()
+    println("")
     newChapter(s, "=")
-    println()
+    println("")
   }
 
   class Asserter[T](a: T) {
