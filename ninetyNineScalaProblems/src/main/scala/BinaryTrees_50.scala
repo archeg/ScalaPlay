@@ -69,8 +69,8 @@ object BinaryTrees_50 extends ChapterApp {
     }
   }
 
-  out(p56(Node('a', Node('b'), Node('c')))) === true
-  out(p56(Node('a', Node('b'), End))) === false
+  out(p56(Node('a', Node('b'), Node('c')))) ==== true
+  out(p56(Node('a', Node('b'), End))) ==== false
 
   --------------("P57. Binary search trees (dictionaries)")
 
@@ -94,10 +94,10 @@ object BinaryTrees_50 extends ChapterApp {
     }
   }
 
-  out(End.addValue(2)) === Node(2)
-  out(End.addValue(2).addValue(3)) === Node(2, End, Node(3))
-  out(End.addValue(2).addValue(3).addValue(0)) === Node(2, Node(0), Node(3))
-  out(p56(End.addValue(2).addValue(3).addValue(0))) === true
+  out(End.addValue(2)) ==== Node(2)
+  out(End.addValue(2).addValue(3)) ==== Node(2, End, Node(3))
+  out(End.addValue(2).addValue(3).addValue(0)) ==== Node(2, Node(0), Node(3))
+  out(p56(End.addValue(2).addValue(3).addValue(0))) ==== true
 
   out(List(5, 3, 18, 1, 4, 12, 21).toBinaryTree)
 
@@ -128,7 +128,7 @@ object BinaryTrees_50 extends ChapterApp {
     case Node(_, x, y) => p61(x) + p61(y)
   }
 
-  out(p61(Node('x', Node('x'), End))) === 1
+  out(p61(Node('x', Node('x'), End))) ==== 1
 
   def p61A[T](tree: Tree[T]): List[T] = tree match {
     case End => Nil
@@ -136,7 +136,7 @@ object BinaryTrees_50 extends ChapterApp {
     case Node(_, x, y) => p61A(x) ::: p61A(y)
   }
 
-  out(p61A( Node('a', Node('b'), Node('c', Node('d'), Node('e'))))) === List('b', 'd', 'e')
+  out(p61A( Node('a', Node('b'), Node('c', Node('d'), Node('e'))))) ==== List('b', 'd', 'e')
 
   --------------("P62. Collect the internal nodes of a binary tree in a list.")
   def p62[T](tree: Tree[T]): List[T] = tree match {
@@ -145,7 +145,7 @@ object BinaryTrees_50 extends ChapterApp {
     case Node(v, x, y) => v :: p62(x) ::: p62(y)
   }
 
-  out(p62(Node('a', Node('b'), Node('c', Node('d'), Node('e'))))) === List('a', 'c')
+  out(p62(Node('a', Node('b'), Node('c', Node('d'), Node('e'))))) ==== List('a', 'c')
 
   def p62B[T](tree: Tree[T], level: Int) = {
     def inner(tree: Tree[T], curLevel: Int): List[T] = (curLevel, tree) match {
@@ -156,7 +156,7 @@ object BinaryTrees_50 extends ChapterApp {
     inner(tree, 1)
   }
 
-  out(p62B(Node('a', Node('b'), Node('c', Node('d'), Node('e'))), 2)) === List('b', 'c')
+  out(p62B(Node('a', Node('b'), Node('c', Node('d'), Node('e'))), 2)) ==== List('b', 'c')
 
 
   --------------("P63. Construct a complete binary tree.")
@@ -170,13 +170,13 @@ object BinaryTrees_50 extends ChapterApp {
       Node(value, p63(leftLeaves + (innerNodes - 1) / 2, value), p63(rightLeaves + (innerNodes - 1) / 2, value))
   }
 
-  out(p63(1, 'x')) === Node('x')
-  out(p63(2, 'x')) === Node('x', Node('x'), End)
-  out(p63(3, 'x')) === Node('x', Node('x'), Node('x'))
-  out(p63(4, 'x')) === Node('x', Node('x', Node('x'), End), Node('x'))
-  out(p63(5, 'x')) === Node('x', Node('x', Node('x'), Node('x')), Node('x'))
-  out(p63(6, 'x')) === Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), End))
-  out(p63(7, 'x')) === Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), Node('x')))
+  out(p63(1, 'x')) ==== Node('x')
+  out(p63(2, 'x')) ==== Node('x', Node('x'), End)
+  out(p63(3, 'x')) ==== Node('x', Node('x'), Node('x'))
+  out(p63(4, 'x')) ==== Node('x', Node('x', Node('x'), End), Node('x'))
+  out(p63(5, 'x')) ==== Node('x', Node('x', Node('x'), Node('x')), Node('x'))
+  out(p63(6, 'x')) ==== Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), End))
+  out(p63(7, 'x')) ==== Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), Node('x')))
 
   def p63_2[T](number: Int, value: T): Tree[T] = {
     def generateTree(addr: Int): Tree[T] =
@@ -185,13 +185,13 @@ object BinaryTrees_50 extends ChapterApp {
     generateTree(1)
   }
 
-  out(p63_2(1, 'x')) === Node('x')
-  out(p63_2(2, 'x')) === Node('x', Node('x'), End)
-  out(p63_2(3, 'x')) === Node('x', Node('x'), Node('x'))
-  out(p63_2(4, 'x')) === Node('x', Node('x', Node('x'), End), Node('x'))
-  out(p63_2(5, 'x')) === Node('x', Node('x', Node('x'), Node('x')), Node('x'))
-  out(p63_2(6, 'x')) === Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), End))
-  out(p63_2(7, 'x')) === Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), Node('x')))
+  out(p63_2(1, 'x')) ==== Node('x')
+  out(p63_2(2, 'x')) ==== Node('x', Node('x'), End)
+  out(p63_2(3, 'x')) ==== Node('x', Node('x'), Node('x'))
+  out(p63_2(4, 'x')) ==== Node('x', Node('x', Node('x'), End), Node('x'))
+  out(p63_2(5, 'x')) ==== Node('x', Node('x', Node('x'), Node('x')), Node('x'))
+  out(p63_2(6, 'x')) ==== Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), End))
+  out(p63_2(7, 'x')) ==== Node('x', Node('x', Node('x'), Node('x')), Node('x', Node('x'), Node('x')))
 
   --------------("P64. Layout a binary tree(1)")
 
@@ -335,7 +335,7 @@ object BinaryTrees_50 extends ChapterApp {
     case Node(v, l, r) => s"$v(${p67(l)},${p67(r)})"
   }
 
-  out(p67(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) === "a(b(d,e),c(,f(g,)))"
+  out(p67(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) ==== "a(b(d,e),c(,f(g,)))"
 
   def p67_backward(str: String): Tree[Char] = p67_backward(str.toList)
   def p67_backward(str: List[Char]): Tree[Char] = {
@@ -358,7 +358,7 @@ object BinaryTrees_50 extends ChapterApp {
     }
   }
 
-  out(p67_backward("a(b(d,e),c(,f(g,)))")) === Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End)))
+  out(p67_backward("a(b(d,e),c(,f(g,)))")) ==== Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End)))
 
   --------------("P68. Preorder and inorder sequences of binary trees.")
   def p68_preorder(tree: Tree[Char]): List[Char] = {
@@ -374,7 +374,7 @@ object BinaryTrees_50 extends ChapterApp {
     inner(tree, Nil).reverse
   }
 
-  out(p68_preorder(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) === List('a', 'b', 'd', 'e', 'c', 'f', 'g')
+  out(p68_preorder(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) ==== List('a', 'b', 'd', 'e', 'c', 'f', 'g')
 
   def p68_inorder(tree: Tree[Char]): List[Char] = {
     def inner(tree: Tree[Char], lst: List[Char]): List[Char] =
@@ -389,7 +389,7 @@ object BinaryTrees_50 extends ChapterApp {
     inner(tree, Nil).reverse
   }
 
-  out(p68_inorder(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) === List('d', 'b', 'e', 'a', 'c', 'g', 'f')
+  out(p68_inorder(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) ==== List('d', 'b', 'e', 'a', 'c', 'g', 'f')
 
   // This doesn't work
 //
@@ -414,7 +414,7 @@ object BinaryTrees_50 extends ChapterApp {
 
     inner(tree).mkString
   }
-  out(p69(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) === "abd..e..c.fg..."
+  out(p69(Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End))))) ==== "abd..e..c.fg..."
 
   def p69_back(lst: String): Tree[Char] = p69_back(lst.toList)
 
@@ -432,5 +432,5 @@ object BinaryTrees_50 extends ChapterApp {
     tree
   }
 
-  out(p69_back("abd..e..c.fg...")) === Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End)))
+  out(p69_back("abd..e..c.fg...")) ==== Node('a', Node('b', Node('d'), Node('e')), Node('c', End, Node('f', Node('g'), End)))
 }

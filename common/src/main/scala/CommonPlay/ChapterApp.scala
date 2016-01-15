@@ -153,7 +153,7 @@ trait ChapterApp extends App {
   }
 
   class Asserter[T](a: T) {
-    def ===(b: Any) {
+    def ====(b: Any) {
       assert(a == b, s"Answer| Exprected :\r\n$a\r\n$b")
     }
 
@@ -179,7 +179,7 @@ trait ChapterApp extends App {
     def assrt(partialFunction: PartialFunction[Any, Boolean]) = Predef.assert(partialFunction(a))
 
     override def equals(b: Any) = {
-      ===(b)
+      ====(b)
       true
     }
 

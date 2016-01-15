@@ -133,8 +133,8 @@ object day7 extends ChapterApp {
                 put(List(9, 2, 1))
       } yield r
 
-    out(stackyStack(List(1, 2, 3))) === (List(8, 3, 1), ())
-    out(stackyStack(List(1, 2, 4))) === (List(9, 2, 1), ())
+    out(stackyStack(List(1, 2, 3))) ==== (List(8, 3, 1), ())
+    out(stackyStack(List(1, 2, 4))) ==== (List(9, 2, 1), ())
 
     // We can also implement a pop and push using get and put:
 
@@ -168,8 +168,8 @@ object day7 extends ChapterApp {
 
     // Left is usually an error, when right is a value
 
-    out(1.right[String]) === \/-(1)
-    out("error".left[Int]) === -\/("error")
+    out(1.right[String]) ==== \/-(1)
+    out("error".left[Int]) ==== -\/("error")
 
     // The Either type in scala is not a monad on its own, which means it does not implement
     // flatMap method with or without Scalaz:

@@ -67,12 +67,12 @@ object LogicAndCodes46_50 extends ChapterApp {
     def and(b: Boolean) = a & b
   }
 
-  out(true and true) === true
-  out(true and false) === false
+  out(true and true) ==== true
+  out(true and false) ==== false
 
   --------------("P48.....")
-  out(true and (true or false)) === true
-  out(true and true and true) === true
+  out(true and (true or false)) ==== true
+  out(true and true and true) ==== true
 
   --------------("P49. Gray code.")
   def p49(n: Int): List[String] = n match {
@@ -80,9 +80,9 @@ object LogicAndCodes46_50 extends ChapterApp {
     case x => (p49(x - 1) map { "0" + _ }) ::: (p49(x - 1).reverse map { "1" + _ })
   }
 
-  out(p49(1)) === List("0", "1")
-  out(p49(2)) === List("00", "01", "11", "10")
-  out(p49(3)) === List("000", "001", "011", "010", "110", "111", "101", "100")
+  out(p49(1)) ==== List("0", "1")
+  out(p49(2)) ==== List("00", "01", "11", "10")
+  out(p49(3)) ==== List("000", "001", "011", "010", "110", "111", "101", "100")
 
   // memoized
   def p49_2(n: Int): List[String] = {
@@ -96,9 +96,9 @@ object LogicAndCodes46_50 extends ChapterApp {
     compute(n)
   }
 
-  out(p49_2(1)) === List("0", "1")
-  out(p49_2(2)) === List("00", "01", "11", "10")
-  out(p49_2(3)) === List("000", "001", "011", "010", "110", "111", "101", "100")
+  out(p49_2(1)) ==== List("0", "1")
+  out(p49_2(2)) ==== List("00", "01", "11", "10")
+  out(p49_2(3)) ==== List("000", "001", "011", "010", "110", "111", "101", "100")
 
   var size = 18
   time("Not memoized") {
@@ -132,6 +132,6 @@ object LogicAndCodes46_50 extends ChapterApp {
     unwrap(Nil, queue.dequeue()) map { case (symbol, code) => (symbol, code.reverse.foldLeft(0)((acc, x) => acc * 10 + x))}
   }
 
-  out(p50(List(("a", 45), ("b", 13), ("c", 12), ("d", 16), ("e", 9), ("f", 5))).toSet) === Set(("a", 0), ("b", 101), ("c", 100), ("d", 111), ("e", 1101), ("f", 1100))
+  out(p50(List(("a", 45), ("b", 13), ("c", 12), ("d", 16), ("e", 9), ("f", 5))).toSet) ==== Set(("a", 0), ("b", 101), ("c", 100), ("d", 111), ("e", 1101), ("f", 1100))
   out(p50(List(("b", 1), ("p", 1), ("`", 2), ("m", 2), ("j", 3), ("o", 3), ("d", 3), ("a", 4), ("i", 4), ("r", 5), ("u", 5), ("l", 6), ("s", 6), ("e", 8), (" ", 12))))
 }

@@ -65,7 +65,7 @@ object MiscallaneousProblems_90 extends ChapterApp {
     inner(start, Set(start), start :: Nil)
   }
 
-  out(p91_slow((1, 1), (0, 0))) === List(List((0, 0)))
+  out(p91_slow((1, 1), (0, 0))) ==== List(List((0, 0)))
 //  private val p = p91_slow((5, 5), (0, 0))
 //  println(p.size)
 //  println(p.head)
@@ -133,7 +133,7 @@ object MiscallaneousProblems_90 extends ChapterApp {
     inner(start, Set(start), start :: Nil)
   }
 
-  out(p91_vansdorf((5, 5), Some((0, 0)))) === Some(List((3,3), (1,4), (2,2), (4,1), (2,0), (0,1), (1,3), (3,4), (4,2), (3,0), (1,1), (0,3), (2,4), (4,3), (3,1), (1,0), (0,2), (2,1), (4,0), (3,2), (4,4), (2,3), (0,4), (1,2), (0,0)))
+  out(p91_vansdorf((5, 5), Some((0, 0)))) ==== Some(List((3,3), (1,4), (2,2), (4,1), (2,0), (0,1), (1,3), (3,4), (4,2), (3,0), (1,1), (0,3), (2,4), (4,3), (3,1), (1,0), (0,2), (2,1), (4,0), (3,2), (4,4), (2,3), (0,4), (1,2), (0,0)))
 
   --------------("P92. Van Koch's conjecture.")
 

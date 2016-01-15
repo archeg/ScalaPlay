@@ -15,10 +15,10 @@ object day0 extends ChapterApp {
     // head is polymorphic around A. This is called parametric polymorphism
     // A - is type variable.
 
-    out(head(1 :: 2 :: Nil)) === 1
+    out(head(1 :: 2 :: Nil)) ==== 1
     case class Car(make: String)
 
-    out(head(Car("Civic") :: Car("CR-V") :: Nil)) === Car("Civic")
+    out(head(Car("Civic") :: Car("CR-V") :: Nil)) ==== Car("Civic")
 
     +++("Subtype polymorphism")
 
@@ -54,7 +54,7 @@ object day0 extends ChapterApp {
     // Let's demonstrate ad-hoc polymorphism by gradually making sum function more general,
     // starting from a simple function that adds up a list of Ints:
     def sum(xs: List[Int]): Int = xs.foldLeft(0) {_ + _}
-    out(sum(List(1, 2, 3, 4))) === 10
+    out(sum(List(1, 2, 3, 4))) ==== 10
 
     +++("Monoid")
 
@@ -68,7 +68,7 @@ object day0 extends ChapterApp {
     }
 
     def sum2(xs: List[Int]): Int = xs.foldLeft(IntMonoid.mzero)(IntMonoid.mappend)
-    out(sum2(List(1, 2, 3, 4))) === 10
+    out(sum2(List(1, 2, 3, 4))) ==== 10
 
     // Now abstract it:
     trait Monoid[A] {
@@ -82,11 +82,11 @@ object day0 extends ChapterApp {
     }
 
     def sum3(xs: List[Int], m: Monoid[Int]): Int = xs.foldLeft(m.mzero)(m.mappend)
-    out(sum3(List(1, 2, 3, 4), IntMonoid2)) === 10
+    out(sum3(List(1, 2, 3, 4), IntMonoid2)) ==== 10
 
     // and not let's abstract sum:
     def sum4[A](xs: List[A], m: Monoid[A]): A = xs.foldLeft(m.mzero)(m.mappend)
-    out(sum4(List(1, 2, 3, 4), IntMonoid2)) === 10
+    out(sum4(List(1, 2, 3, 4), IntMonoid2)) ==== 10
 
     // and let's make the monoid implicit
 
@@ -95,7 +95,7 @@ object day0 extends ChapterApp {
     }
 
     implicit val intMonoid = IntMonoid2
-    out(sum5(List(1, 2, 3, 4))) === 10 // Perfect!
+    out(sum5(List(1, 2, 3, 4))) ==== 10 // Perfect!
 
     // Now we can write a few other monoids:
     object Monoid {
@@ -112,8 +112,8 @@ object day0 extends ChapterApp {
     }
 
     import Monoid._
-    out(sum5(List("Hello", " ", "world"))) === "Hello world"
-    out(sum5(List(2.0, 7.5))) === 9.5
+    out(sum5(List("Hello", " ", "world"))) ==== "Hello world"
+    out(sum5(List(2.0, 7.5))) ==== 9.5
 
     // Monoid is not only about +. You can have different monoids:
     object Mult extends Monoid[Int] {
@@ -121,7 +121,7 @@ object day0 extends ChapterApp {
       override def mzero: Int = 1
     }
 
-    out(sum5(List(2, 5, 3))(Mult)) === 30
+    out(sum5(List(2, 5, 3))(Mult)) ==== 30
   }
   sumFunction
 
@@ -151,8 +151,8 @@ object day0 extends ChapterApp {
     import sumFunction.Monoid
     import sumFunction.Monoid._
 
-    out(sum(List(1, 2, 3, 4))) === 10
-    out(sum(List("a", "b", "c", "d"))) === "abcd"
+    out(sum(List(1, 2, 3, 4))) ==== 10
+    out(sum(List("a", "b", "c", "d"))) ==== "abcd"
 
     // Ok, now we we are talking. HKT
     trait FoldLeft[F[_]] {            // FoldLeft is a typeClass/typeConstructor
@@ -171,8 +171,8 @@ object day0 extends ChapterApp {
       fl.foldLeft(xs, m.mzero, m.mappend)
     }
 
-    out(sum(List(1, 2, 3, 4))) === 10
-    out(sum(List("a", "b", "c", "d"))) === "abcd"
+    out(sum(List(1, 2, 3, 4))) ==== 10
+    out(sum(List("a", "b", "c", "d"))) ==== "abcd"
 
     // The traits Monoid and FoldLeft correspond to Haskell' typeclass. Scalaz provides many typeclasses.
     // All this is broken down into just hte pieces you need.
@@ -187,7 +187,7 @@ object day0 extends ChapterApp {
     import sumFunction.Monoid
     import sumFunction.Monoid._
     def plus[A: Monoid](a: A, b: A): A = implicitly[Monoid[A]].mappend(a, b)
-    out(plus(3, 4)) === 7
+    out(plus(3, 4)) ==== 7
 
     // What if we ant to provide an operator?
     // But we don't want to enrich just one type,
@@ -206,8 +206,8 @@ object day0 extends ChapterApp {
       val value = a
     }
 
-    out(3 |+| 4) === 7
-    out("a" |+| "b") === "ab"
+    out(3 |+| 4) ==== 7
+    out("a" |+| "b") ==== "ab"
   }
 
   {
@@ -215,10 +215,10 @@ object day0 extends ChapterApp {
     // for standard library types like Option and Boolean:
     import scalaz._
     import Scalaz._
-    out(1.some | 2) === 1
-    out(Some(1).getOrElse(2)) === 1
-    out((1 > 10)? 1 | 2) === 2
-    out(if (1 > 10) 1 else 2) === 2
+    out(1.some | 2) ==== 1
+    out(Some(1).getOrElse(2)) ==== 1
+    out((1 > 10)? 1 | 2) ==== 2
+    out(if (1 > 10) 1 else 2) ==== 2
 
   }
 }

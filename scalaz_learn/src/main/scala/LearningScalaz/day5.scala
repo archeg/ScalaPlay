@@ -35,15 +35,15 @@ object day5 extends ChapterApp {
 
     // BindOps introduces flatMap operator, and its symblic aliases >>= and *
 
-    out(3.some flatMap {x => (x + 1).some}) === 4.some
-    out(none[Int] flatMap {x => (x + 1).some}) === none[Int]
+    out(3.some flatMap {x => (x + 1).some}) ==== 4.some
+    out(none[Int] flatMap {x => (x + 1).some}) ==== none[Int]
   }
 
   --------------("Monad")
 
   {
     // point creates monad. In haskell its `return` or `pure` functions
-    out(Monad[Option].point("WHAT")) === "WHAT".some
+    out(Monad[Option].point("WHAT")) ==== "WHAT".some
     out(9.some flatMap {x => Monad[Option].point(x * 10)})
     out(none[Int] flatMap {x => Monad[Option].point(x * 10)})
   }
@@ -65,13 +65,13 @@ object day5 extends ChapterApp {
     }
 
     // Let's try:
-    out(Pole(0, 0).landLeft(2)) === Pole(2, 0)
-    out(Pole(1, 2).landRight(1)) === Pole(1, 3)
-    out(Pole(1, 2).landRight(-1)) === Pole(1, 1)
-    out(Pole(0, 0).landLeft(1).landRight(1).landLeft(2)) === Pole(3, 1)
+    out(Pole(0, 0).landLeft(2)) ==== Pole(2, 0)
+    out(Pole(1, 2).landRight(1)) ==== Pole(1, 3)
+    out(Pole(1, 2).landRight(-1)) ==== Pole(1, 1)
+    out(Pole(0, 0).landLeft(1).landRight(1).landLeft(2)) ==== Pole(3, 1)
 
     // But:
-    out(Pole(0, 0).landLeft(1).landRight(4).landLeft(-1).landRight(-2)) === Pole(0, 2)
+    out(Pole(0, 0).landLeft(1).landRight(4).landLeft(-1).landRight(-2)) ==== Pole(0, 2)
   }
 
   // The intermediate value have failed, but the calculation kept going.
@@ -92,12 +92,12 @@ object day5 extends ChapterApp {
           none
     }
 
-    out(Pole(0, 0).landRight(1) flatMap {_.landLeft(2)}) === Pole(2, 1).some
-    out(none[Pole] flatMap {_.landLeft(2)}) === none
-    out(Monad[Option].point(Pole(0, 0)) flatMap {_.landRight(2)} flatMap {_.landLeft(2)} flatMap {_.landRight(2)}) === Pole(2, 4).some
+    out(Pole(0, 0).landRight(1) flatMap {_.landLeft(2)}) ==== Pole(2, 1).some
+    out(none[Pole] flatMap {_.landLeft(2)}) ==== none
+    out(Monad[Option].point(Pole(0, 0)) flatMap {_.landRight(2)} flatMap {_.landLeft(2)} flatMap {_.landRight(2)}) ==== Pole(2, 4).some
 
     // We could use >>= alias to make it look mor monadic:
-    out(Monad[Option].point(Pole(0, 0)) >>= {_.landRight(2)} >>= {_.landLeft(2)} >>= {_.landRight(2)}) === Pole(2, 4).some
+    out(Monad[Option].point(Pole(0, 0)) >>= {_.landRight(2)} >>= {_.landLeft(2)} >>= {_.landRight(2)}) ==== Pole(2, 4).some
 
     // Just for fun:
     out(for {
@@ -105,11 +105,11 @@ object day5 extends ChapterApp {
       pole2 <- pole1.landRight(2)
       pole3 <- pole2.landLeft(2)
       pole4 <- pole3.landRight(2)
-    } yield pole4) === Pole(2, 4).some
+    } yield pole4) ==== Pole(2, 4).some
 
     // Let's see if Monadic chaining simulates the pole balancing better:
 
-    out(Monad[Option].point(Pole(0, 0)) >>= {_.landLeft(1)} >>= {_.landRight(4)} >>= {_.landLeft(-1)} >>= {_.landRight(-2)}) === none
+    out(Monad[Option].point(Pole(0, 0)) >>= {_.landLeft(1)} >>= {_.landRight(4)} >>= {_.landLeft(-1)} >>= {_.landRight(-2)}) ==== none
   }
 
   --------------("Banana on wire")
@@ -142,15 +142,15 @@ object day5 extends ChapterApp {
       pole2 <- pole1.landLeft(1)
       pole3 <- pole2.banana
       pole4 <- pole3.landRight(1)
-    } yield pole4) === none
+    } yield pole4) ==== none
 
     // LYAHFGG:
     // Instead of making functions that ignore their input and just return a predetermined monadic value,
     // we can use the >> function
 
-    out(none[Int] >> 3.some) === none
-    out(3.some >> 4.some) === 4.some
-    out(3.some >> none[Int]) === none
+    out(none[Int] >> 3.some) ==== none
+    out(3.some >> 4.some) ==== 4.some
+    out(3.some >> none[Int]) ==== none
 
     // Let's try replacing banana with >> (none[Pole]) :
     illTyped("Monad[Option].point(Pole(0, 0)) >>= {_.landLeft(1)} >> (none: Option[Pole]) >>= {_.landRight(1)}")
@@ -158,8 +158,8 @@ object day5 extends ChapterApp {
     // The type inference broke down here.
     // The precendence of >> is higher than of >>= in scala, because >>= ends on =
     // which forces {_.landLeft(1)} >> (none: Option[Pole]) to evaluate first
-    out(Monad[Option].point(Pole(0, 0)).>>=({_.landLeft(1)}).>>(none: Option[Pole]).>>=({_.landRight(1)})) === none
-    out((Monad[Option].point(Pole(0, 0)) >>= {_.landLeft(1)}) >> (none: Option[Pole]) >>= {_.landRight(1)}) === none
+    out(Monad[Option].point(Pole(0, 0)).>>=({_.landLeft(1)}).>>(none: Option[Pole]).>>=({_.landRight(1)})) ==== none
+    out((Monad[Option].point(Pole(0, 0)) >>= {_.landLeft(1)}) >> (none: Option[Pole]) >>= {_.landRight(1)}) ==== none
   }
 
   bananaOnWire
@@ -170,18 +170,18 @@ object day5 extends ChapterApp {
     // LYAHFGG:
     // Monads in Haskell are so useful that they got their own special syntax called do notation
 
-    out(3.some >>= { x => "!".some >>= { y => (x.shows + y).some } }) === "3!".some
+    out(3.some >>= { x => "!".some >>= { y => (x.shows + y).some } }) ==== "3!".some
 
     // Any part of this calculation can fail:
-    out(3.some >>= { x => (none: Option[String]) >>= { y => (x.shows + y).some } }) === none
-    out((none: Option[Int]) >>= { x => "!".some >>= { y => (x.shows + y).some } }) === none
-    out(3.some >>= { x => "!".some >>= { y => (none: Option[String]) } }) === none
+    out(3.some >>= { x => (none: Option[String]) >>= { y => (x.shows + y).some } }) ==== none
+    out((none: Option[Int]) >>= { x => "!".some >>= { y => (x.shows + y).some } }) ==== none
+    out(3.some >>= { x => "!".some >>= { y => (none: Option[String]) } }) ==== none
 
     // So we can use for:
     out(for {
       x <- 3.some
       y <- "!".some
-    } yield x.shows + y) === "3!".some
+    } yield x.shows + y) ==== "3!".some
 
     // LYAHFGG:
     // In a do expression, every line that isn't a let line is a monadic value.
@@ -206,7 +206,7 @@ object day5 extends ChapterApp {
         third <- second.landLeft(1)
       } yield third
 
-    out(routine) === Pole(3, 2).some
+    out(routine) ==== Pole(3, 2).some
 
     // LYAHFGG:
     // If we want to throw the Pierre a banana peel in do notation, we can do the following
@@ -220,7 +220,7 @@ object day5 extends ChapterApp {
         third <- second.landLeft(2)
       } yield third
 
-    out(routine2) === none[Pole]
+    out(routine2) ==== none[Pole]
 
     // Converting to chaining
     def routine3: Option[Pole] =
@@ -247,7 +247,7 @@ object day5 extends ChapterApp {
         (x :: xs) <- "hello".toList.some
       } yield x
 
-    out(justH) === 'h'.some
+    out(justH) ==== 'h'.some
 
     // LYAHFGG:
     // When pattern matching fails in a do expression, the fail function is called.
@@ -260,7 +260,7 @@ object day5 extends ChapterApp {
         (x :: xs) <- "".toList.some
       } yield x
 
-    out(wopwop) === none
+    out(wopwop) ==== none
 
     // translation:
 
@@ -280,14 +280,14 @@ object day5 extends ChapterApp {
     // Using lists as applicative functors showcases this non-determinism nicely
 
     // Let's look at using List as Applicatives again:
-    out(^(List(1, 2, 3), List(10, 100, 100)) { _ * _ }) === List(10, 100, 100, 20, 200, 200, 30, 300, 300)
+    out(^(List(1, 2, 3), List(10, 100, 100)) { _ * _ }) ==== List(10, 100, 100, 20, 200, 200, 30, 300, 300)
 
-    out(List(3, 4, 5) >>= {x => List(x, -x)}) === List(3, -3, 4, -4, 5, -5)
+    out(List(3, 4, 5) >>= {x => List(x, -x)}) ==== List(3, -3, 4, -4, 5, -5)
 
     out(for {
       n <- List(1, 2)
       ch <- List('a', 'b')
-    } yield (n, ch)) === List((1, 'a'), (1, 'b'), (2, 'a'), (2, 'b'))
+    } yield (n, ch)) ==== List((1, 'a'), (1, 'b'), (2, 'a'), (2, 'b'))
   }
 
   =============================================("MonadPlus and the guard function")
@@ -296,7 +296,7 @@ object day5 extends ChapterApp {
     // Scala's for notation allows filtering:
     out(for {
       x <- 1 |-> 50 if x.shows contains '7'
-    } yield x) === List(7, 17, 27, 37, 47)
+    } yield x) ==== List(7, 17, 27, 37, 47)
 
     // LYAHFGG:
     // The MonadPlus type class is for monads that can also act as monoids.
@@ -362,8 +362,8 @@ object day5 extends ChapterApp {
       def canReachIn3(end: KnightPos): Boolean = in3 contains end
     }
 
-    out(KnightPos(6, 2) canReachIn3 KnightPos(6, 1)) === true
-    out(KnightPos(6, 2) canReachIn3 KnightPos(7, 3)) === false
+    out(KnightPos(6, 2) canReachIn3 KnightPos(6, 1)) ==== true
+    out(KnightPos(6, 2) canReachIn3 KnightPos(7, 3)) ==== false
   }
 
   =============================================("Monad laws")
@@ -375,14 +375,14 @@ object day5 extends ChapterApp {
     // The first monad law states that if we take a value, put it in a default context with return
     // and then feed it to a function by using >>=, it's the same as just taking the value and applying the function to it
 
-    out(Monad[Option].point(3) >>= { x => (x + 100000).some }) === (3 |> { x => (x + 100000).some })
+    out(Monad[Option].point(3) >>= { x => (x + 100000).some }) ==== (3 |> { x => (x + 100000).some })
 
     +++("Right identity")
 
     // The second law states that if we have a monadic value and we use >>=
     // ti feed ut ti return, the result is our original monadic value.
 
-    out("move on up".some flatMap {Monad[Option].point(_)}) === "move on up".some
+    out("move on up".some flatMap {Monad[Option].point(_)}) ==== "move on up".some
 
     +++("Associativity")
 
@@ -391,7 +391,7 @@ object day5 extends ChapterApp {
 
     import bananaOnWire.Pole
 
-    out(Monad[Option].point(Pole(0, 0)) >>= {_.landRight(2)} >>= {_.landLeft(2)} >>= {_.landRight(2)}) === Pole(2, 4).some
+    out(Monad[Option].point(Pole(0, 0)) >>= {_.landRight(2)} >>= {_.landLeft(2)} >>= {_.landRight(2)}) ==== Pole(2, 4).some
 
     out(Monad[Option].point(Pole(0, 0)) >>= {
       x => x.landRight(2) >>= {
@@ -399,7 +399,7 @@ object day5 extends ChapterApp {
           z => z.landRight(2)
         }
       }
-    }) === Pole(2, 4).some
+    }) ==== Pole(2, 4).some
   }
 
   {

@@ -129,7 +129,7 @@ object Functors extends ChapterApp {
       self => f(self.ra())   // Computes self, then f
   }
 
-  out(IOMonad.flatMap[Int, Int](x => IO(() => x * 2))(IO(() => 3))) === IO(() => 6)
+  out(IOMonad.flatMap[Int, Int](x => IO(() => x * 2))(IO(() => 3))) ==== IO(() => 6)
 
 
   // List monad computes all possible results from the second computation that applied to each of the first computation
@@ -198,7 +198,7 @@ object Functors extends ChapterApp {
   // Literally: we take a box that transforms apples to plumps and give it a box of apples.
 
   val f = (x: Int) => x + 1                     // Functor
-  out(Option(5) map f) === Some(6)
+  out(Option(5) map f) ==== Some(6)
   val g = (x: Int) => (y: Int) => x + y
   out(Option(5) map g) ==@ "Some(<function1>)"  // We received an applicative.
 

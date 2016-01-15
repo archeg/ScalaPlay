@@ -20,11 +20,11 @@ object Play extends ChapterApp {
       def apply[T](s: Set[T]) = s.headOption
     }
 
-    out(choose(Set(1, 2, 3))) === Some(1)
-    out(choose(Set('a', 'b', 'c'))) === Some('a')
+    out(choose(Set(1, 2, 3))) ==== Some(1)
+    out(choose(Set('a', 'b', 'c'))) ==== Some('a')
 
-    out(choose2(Set(1, 2, 3))) === Some(1)
-    out(choose2(Set('a', 'b', 'c'))) === Some('a')
+    out(choose2(Set(1, 2, 3))) ==== Some(1)
+    out(choose2(Set('a', 'b', 'c'))) ==== Some('a')
 
     def pairApply(f: Set ~> Option) = (f(Set(1, 2, 3)), f(Set('a', 'b', 'c')))         // But thanks to ~> we can now accept such functions.
 
@@ -45,10 +45,10 @@ object Play extends ChapterApp {
       implicit def caseTuple[T, U](implicit st: Case.Aux[T, Int], su: Case.Aux[U, Int]) = at[(T, U)](t => size(t._1) + size(t._2))
     }
 
-    out(size(23)) === 1
-    out(size("foo")) === 3
-    out(size((23, "foo"))) === 4
-    out(size(((23, "foo"), 13))) === 5
+    out(size(23)) ==== 1
+    out(size("foo")) ==== 3
+    out(size((23, "foo"))) ==== 4
+    out(size(((23, "foo"), 13))) ==== 5
 
     def size2(a: Any): Int = a match {
       case a : Int => 1
@@ -56,10 +56,10 @@ object Play extends ChapterApp {
       case (a, b) => size2(a) + size2(b)
     }
 
-    out(size2(23)) === 1
-    out(size2("foo")) === 3
-    out(size2((23, "foo"))) === 4
-    out(size2(((23, "foo"), 13))) === 5
+    out(size2(23)) ==== 1
+    out(size2("foo")) ==== 3
+    out(size2((23, "foo"))) ==== 4
+    out(size2(((23, "foo"), 13))) ==== 5
   }
 
   --------------("Heterogenous lists")
@@ -77,7 +77,7 @@ object Play extends ChapterApp {
 
     val sets = Set(1) :: Set("foo") :: HNil
     val a = sets map choose                   // HList - strict type.
-    out(a) === Some(1) :: Some("foo") :: HNil
+    out(a) ==== Some(1) :: Some("foo") :: HNil
 
     val sets_ori = Set(1) :: Set("foo") :: Nil
     val a1 = sets_ori map (_.headOption)       // List[Option[Any]]
@@ -130,15 +130,15 @@ object Play extends ChapterApp {
 
   {
     import syntax.std.tuple._
-    out((23, "foo", true).head) === 23
-    out((23, "foo", true).tail) === ("foo", true)
-    out((23, "foo", true).drop(2)) === Tuple1(true)
-    out((23, "foo", true).take(2)) === (23, "foo")
-    out((23, "foo", true).split(1)) === (Tuple1(23), ("foo", true))
+    out((23, "foo", true).head) ==== 23
+    out((23, "foo", true).tail) ==== ("foo", true)
+    out((23, "foo", true).drop(2)) ==== Tuple1(true)
+    out((23, "foo", true).take(2)) ==== (23, "foo")
+    out((23, "foo", true).split(1)) ==== (Tuple1(23), ("foo", true))
 
-    out(23 +: ("foo", true)) === (23, "foo", true)
-    out((23, "foo") :+ true) === (23, "foo", true)
-    out((23, "foo") ++ (true, 2.0)) === (23, "foo", true, 2.0)
+    out(23 +: ("foo", true)) ==== (23, "foo", true)
+    out((23, "foo") :+ true) ==== (23, "foo", true)
+    out((23, "foo") ++ (true, 2.0)) ==== (23, "foo", true, 2.0)
 
     import poly._
 
@@ -146,8 +146,8 @@ object Play extends ChapterApp {
       def apply[T](t: T) = Option(t)
     }
 
-    out((23, "foo", true) map option) === (Some(23), Some("foo"), Some(true))
-    out(((23, "foo"), (), (true, 2.0)) flatMap identity) === (23, "foo", true, 2.0)
+    out((23, "foo", true) map option) ==== (Some(23), Some("foo"), Some(true))
+    out(((23, "foo"), (), (true, 2.0)) flatMap identity) ==== (23, "foo", true, 2.0)
 
     object size extends Poly1 {
       implicit def caseInt = at[Int](x => 1)
@@ -158,9 +158,9 @@ object Play extends ChapterApp {
       implicit def default[T](implicit st: size.Case.Aux[T, Int]) = at[Int, T]{ (acc, t) => acc + size(t) }
     }
 
-    out((23, "foo", (13, "wibble")).foldLeft(0)(addSize))  === 11
+    out((23, "foo", (13, "wibble")).foldLeft(0)(addSize))  ==== 11
 
-    out((23, "foo", true).productElements) === 23 :: "foo" :: true :: HNil
+    out((23, "foo", true).productElements) ==== 23 :: "foo" :: true :: HNil
     out((23, "foo", true).toList) == 23 :: "foo" :: true :: Nil
 
     import syntax.zipper._
@@ -212,8 +212,8 @@ object Play extends ChapterApp {
     import shapeless._
     import syntax.singleton._
 
-    out(23.narrow) === 23
-    out("foo".narrow) === "foo"
+    out(23.narrow) ==== 23
+    out("foo".narrow) ==== "foo"
 
     val (wTrue, wFalse) = (Witness(true), Witness(false))
     type True = wTrue.T
@@ -253,15 +253,15 @@ object Play extends ChapterApp {
       ("price" ->> 44.11) ::
       HNil
 
-    out(book("author")) === "Benjamin Pierce"
-    out(book("title")) === "Types and Programming Languages"
-    out(book("id")) === 262162091
+    out(book("author")) ==== "Benjamin Pierce"
+    out(book("title")) ==== "Types and Programming Languages"
+    out(book("id")) ==== 262162091
     out(book.keys)
     out(book.values)
 
     val newPrice = book("price") + 2.0
     val updated = book + ("price" ->> newPrice)
-    out(updated("price")) === 46.11
+    out(updated("price")) ==== 46.11
 
     val extended = updated + ("inPrint" ->> true)
     val noId = extended - "id"
@@ -275,8 +275,8 @@ object Play extends ChapterApp {
     type ISB = Int :+: String :+: Boolean :+: CNil
 
     val isb = Coproduct[ISB]("foo")
-    out(isb.select[Int]) === None
-    out(isb.select[String]) === Some("foo")
+    out(isb.select[Int]) ==== None
+    out(isb.select[String]) ==== Some("foo")
 
     object size extends Poly1 {
       implicit def caseInt = at[Int](i => (i, 1))
@@ -284,8 +284,8 @@ object Play extends ChapterApp {
       implicit def caseBoolean = at[Boolean](b => (b, 1))
     }
 
-    out(isb map size) === Coproduct[(Int, Int) :+: (String, Int) :+: (Boolean, Int) :+: CNil](("foo", 3))
-    out((isb map size).select[(String, Int)]) === Some(("foo", 3))
+    out(isb map size) ==== Coproduct[(Int, Int) :+: (String, Int) :+: (Boolean, Int) :+: CNil](("foo", 3))
+    out((isb map size).select[(String, Int)]) ==== Some(("foo", 3))
   }
 
   --------------("Generic representation of (sealed families of) case classes")
@@ -295,11 +295,11 @@ object Play extends ChapterApp {
     val fooGen = Generic[Foo]
     val foo = Foo(23, "foo", true)
 
-    out(fooGen.to(foo)) === 23 :: "foo" :: true :: HNil
+    out(fooGen.to(foo)) ==== 23 :: "foo" :: true :: HNil
 
-    out(13 :: fooGen.to(foo).tail) === 13 :: "foo" :: true :: HNil
+    out(13 :: fooGen.to(foo).tail) ==== 13 :: "foo" :: true :: HNil
 
-    out(fooGen.from(13 :: fooGen.to(foo).tail)) === Foo(13, "foo", true)
+    out(fooGen.from(13 :: fooGen.to(foo).tail)) ==== Foo(13, "foo", true)
 
     sealed trait Tree[T]
     case class Leaf[T](t: T) extends Tree[T]

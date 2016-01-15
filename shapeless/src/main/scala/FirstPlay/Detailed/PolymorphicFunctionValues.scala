@@ -22,13 +22,13 @@ object PolymorphicFunctionValues extends ChapterApp {
   }
 
   val chooseResult: Option[Int] = choosePolymorphic(Set(1, 2, 3))
-  out(chooseResult) === Some(1)                               // Single function can accept both Set[Int] and Set[Char]
-  out(choosePolymorphic(Set('a', 'b', 'c'))) === Some('a')
+  out(chooseResult) ==== Some(1)                               // Single function can accept both Set[Int] and Set[Char]
+  out(choosePolymorphic(Set('a', 'b', 'c'))) ==== Some('a')
 
   val chooseMonoInstance = new chooseMonomorphic[Int]               // This function accepts only Set[Int].
   val chooseMonomorphicResult = chooseMonoInstance(Set(1, 2, 3))
-  out(chooseMonomorphicResult) === Some(1)                          // For Set[Char] you need to create a new function.
-  out(new chooseMonomorphic()(Set('a', 'b', 'c'))) === Some('a')
+  out(chooseMonomorphicResult) ==== Some(1)                          // For Set[Char] you need to create a new function.
+  out(new chooseMonomorphic()(Set('a', 'b', 'c'))) ==== Some('a')
 
 
   // Is it polymorphic?
@@ -46,9 +46,9 @@ object PolymorphicFunctionValues extends ChapterApp {
   // We can still call scala functions polymorphic in the sense of object-oriented polymorphism:
 
 
-  out(scalaMap(Set(1, 2, 3))) === Some(1)
-  out(scalaMap(immutable.HashSet(1, 2, 3))) === Some(1)
-  out(scalaMap(immutable.ListSet(1, 2, 3))) === Some(3)
+  out(scalaMap(Set(1, 2, 3))) ==== Some(1)
+  out(scalaMap(immutable.HashSet(1, 2, 3))) ==== Some(1)
+  out(scalaMap(immutable.ListSet(1, 2, 3))) ==== Some(3)
 
   // So scalaMap accepts the family of functions that derive from Set[T], and thus is polymorphic, but only in object-oriented polymorphism,
   // and not in parametric polymorphism.

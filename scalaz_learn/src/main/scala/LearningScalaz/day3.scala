@@ -135,10 +135,10 @@ object day3 extends ChapterApp {
     // - There exists such a value that doesn't change other values when used with the binary function
 
     // Let's check
-    out(4 * 1) === 4
-    out(1 * 9) === 9
-    out(List(1, 2, 3) ++ Nil) === List(1, 2, 3)
-    out(Nil ++ List(0.5, 2.5)) === List(0.5, 2.5)
+    out(4 * 1) ==== 4
+    out(1 * 9) ==== 9
+    out(List(1, 2, 3) ++ Nil) ==== List(1, 2, 3)
+    out(Nil ++ List(0.5, 2.5)) ==== List(0.5, 2.5)
 
     // LYAHFGG:
     // It doesn't matter if we do (3 * 4) * 5 or 3 * (4 * 5). Either way it's 60
@@ -146,8 +146,8 @@ object day3 extends ChapterApp {
     // * is associative and so is ++
     // but - for example is not.
 
-    out((3 * 4) * 5) === 3 * (4 * 5)
-    out(List("la") ++ (List("di") ++ List("da"))) === (List("la") ++ List("di")) ++ List("da")
+    out((3 * 4) * 5) ==== 3 * (4 * 5)
+    out(List("la") ++ (List("di") ++ List("da"))) ==== (List("la") ++ List("di")) ++ List("da")
   }
 
   --------------("Monoid")
@@ -181,12 +181,12 @@ object day3 extends ChapterApp {
     // LYAHFGG also warns that just because it's named mappend it does not
     // mean it's appending something, like in the case of *
 
-    out(List(1, 2, 3) mappend List(4, 5, 6)) === List(1, 2, 3, 4, 5, 6)
-    out("one" mappend "two") === "onetwo"
+    out(List(1, 2, 3) mappend List(4, 5, 6)) ==== List(1, 2, 3, 4, 5, 6)
+    out("one" mappend "two") ==== "onetwo"
 
     // The idiomatic Scalaz way is to use |+|:
-    out(List(1, 2, 3) |+| List(4 ,5, 6)) === List(1, 2, 3, 4, 5, 6)
-    out("one" |+| "two") === "onetwo"
+    out(List(1, 2, 3) |+| List(4 ,5, 6)) ==== List(1, 2, 3, 4, 5, 6)
+    out("one" |+| "two") ==== "onetwo"
   }
 
   --------------("Back to Monoid")
@@ -197,9 +197,9 @@ object day3 extends ChapterApp {
 
     // Scalaz calls this zero instead
 
-    out(Monoid[List[Int]].zero) === Nil
-    out(Monoid[String].zero) === ""
-    out(Monoid[Int].zero) === 0
+    out(Monoid[List[Int]].zero) ==== Nil
+    out(Monoid[String].zero) ==== ""
+    out(Monoid[Int].zero) ==== 0
   }
 
   --------------("Tags.Multiplication")
@@ -214,7 +214,7 @@ object day3 extends ChapterApp {
 
     out(Tags.Multiplication(10) |+| Monoid[Int @@ Tags.Multiplication].zero)
 
-    out(Tags.Multiplication(10) |+| Tags.Multiplication(20)) === 200
+    out(Tags.Multiplication(10) |+| Tags.Multiplication(20)) ==== 200
 
     out(10 |+| 30)
   }
@@ -233,8 +233,8 @@ object day3 extends ChapterApp {
     type firstWay = Boolean @@ Tags.Disjunction
     type secondWay = Boolean @@ Tags.Conjunction
 
-    out(Tags.Disjunction(true) |+| Tags.Disjunction(false)) === true
-    out(Monoid[Boolean @@ Tags.Disjunction].zero |+| Tags.Disjunction(true)) === true
+    out(Tags.Disjunction(true) |+| Tags.Disjunction(false)) ==== true
+    out(Monoid[Boolean @@ Tags.Disjunction].zero |+| Tags.Disjunction(true)) ==== true
 
     illTyped("""out(Tags.Disjunction(true) |+| Tags.Conjunction(false))""")
   }
@@ -249,11 +249,11 @@ object day3 extends ChapterApp {
 
     illTyped("""Ordering.LT |+| Ordering.GT""") // Not yet
 
-    out((Ordering.LT: Ordering) |+| (Ordering.GT: Ordering)) === Ordering.LT
-    out((Ordering.GT: Ordering) |+| (Ordering.LT: Ordering)) === Ordering.GT
-    out((Ordering.EQ: Ordering) |+| (Ordering.GT: Ordering)) === Ordering.GT
-    out((Ordering.EQ: Ordering) |+| (Ordering.LT: Ordering)) === Ordering.LT
-    out((Ordering.EQ: Ordering) |+| (Ordering.EQ: Ordering)) === Ordering.EQ
+    out((Ordering.LT: Ordering) |+| (Ordering.GT: Ordering)) ==== Ordering.LT
+    out((Ordering.GT: Ordering) |+| (Ordering.LT: Ordering)) ==== Ordering.GT
+    out((Ordering.EQ: Ordering) |+| (Ordering.GT: Ordering)) ==== Ordering.GT
+    out((Ordering.EQ: Ordering) |+| (Ordering.LT: Ordering)) ==== Ordering.LT
+    out((Ordering.EQ: Ordering) |+| (Ordering.EQ: Ordering)) ==== Ordering.EQ
 
     +++("lengthCompare")
 
@@ -270,7 +270,7 @@ object day3 extends ChapterApp {
     // now |+| combines them, using left order only if it is not EQ
 
 
-    out(lengthCompare("zen", "ants")) === Ordering.LT
-    out(lengthCompare("zen", "ant")) === Ordering.GT
+    out(lengthCompare("zen", "ants")) ==== Ordering.LT
+    out(lengthCompare("zen", "ant")) ==== Ordering.GT
   }
 }

@@ -38,17 +38,17 @@ object day8 extends ChapterApp {
   }
 
   {
-    out((Some(9.some): Option[Option[Int]]).join) === 9.some
-    out((Some(none): Option[Option[Int]]).join) === none
-    out((none : Option[Option[Int]]).join) === none
+    out((Some(9.some): Option[Option[Int]]).join) ==== 9.some
+    out((Some(none): Option[Option[Int]]).join) ==== none
+    out((none : Option[Option[Int]]).join) ==== none
 
-    out(List(List(1, 2, 3), List(4, 5, 6)).join) === List(1, 2, 3, 4, 5, 6)
-    out(List(List(List(1, 2, 3))).join) === List(List(1, 2, 3))
-    out(List(List(List(1, 2, 3))).join.join) === List(1, 2, 3)
+    out(List(List(1, 2, 3), List(4, 5, 6)).join) ==== List(1, 2, 3, 4, 5, 6)
+    out(List(List(List(1, 2, 3))).join) ==== List(List(1, 2, 3))
+    out(List(List(List(1, 2, 3))).join.join) ==== List(1, 2, 3)
 
-    out(9.right[String].right[String].join) === 9.right[String]
+    out(9.right[String].right[String].join) ==== 9.right[String]
 
-    out("boom".left[Int].right[String].join) === "boom".left[Int]
+    out("boom".left[Int].right[String].join) ==== "boom".left[Int]
   }
 
   --------------("filterM method")
@@ -67,9 +67,9 @@ object day8 extends ChapterApp {
 
   {
 
-    out(List(1, 2, 3) filterM {x => true.some}) === List(1, 2, 3).some
-    out(List(1, 2, 3) filterM {x => (x % 2 != 0).some}) === List(1, 3).some
-    out(List(1, 2, 3) filterM {x => List(true, false)}) === List(List(1, 2, 3), List(1, 2), List(1, 3), List(1), List(2, 3), List(2), List(3), List())
+    out(List(1, 2, 3) filterM {x => true.some}) ==== List(1, 2, 3).some
+    out(List(1, 2, 3) filterM {x => (x % 2 != 0).some}) ==== List(1, 3).some
+    out(List(1, 2, 3) filterM {x => List(true, false)}) ==== List(List(1, 2, 3), List(1, 2), List(1, 3), List(1), List(2, 3), List(2), List(3), List())
 
     out(List(1, 2, 3) filterM {x => List(true)})
     out(List(1, 2, 3) filterM {x => List(true, true)})
@@ -88,8 +88,8 @@ object day8 extends ChapterApp {
     }
 
     out(List(2, 8, 3, 1).foldLeft(0.some) {case (aggr: Option[Int], i) => aggr.map(_ + i)})
-    out(List(2, 8, 3, 1).foldLeftM(0) {binSmalls}) === 14.some
-    out(List(2, 11, 3, 1).foldLeftM(0) {binSmalls}) === none
+    out(List(2, 8, 3, 1).foldLeftM(0) {binSmalls}) ==== 14.some
+    out(List(2, 11, 3, 1).foldLeftM(0) {binSmalls}) ==== none
   }
 
   =============================================("Making a safe RPN calculator")
@@ -111,15 +111,15 @@ object day8 extends ChapterApp {
       def solveRPN(s: String): Double =
         s.split(' ').toList.foldLeft(Nil: List[Double]) {foldingFunction}.head
 
-      out(solveRPN("10 4 3 + 2 * -")) === -4.0
+      out(solveRPN("10 4 3 + 2 * -")) ==== -4.0
     }
 
     {
       // .parseInt returns Validation[NumberFormatException, Int]
-      out("1".parseInt.toOption) === 1.some
-      out("Hello".parseInt.toOption) === none
-      out(List(1).point[Option]) === List(1).some
-      out(List.empty[Int].point[Option]) === List.empty[Int].some
+      out("1".parseInt.toOption) ==== 1.some
+      out("Hello".parseInt.toOption) ==== none
+      out(List(1).point[Option]) ==== List(1).some
+      out(List.empty[Int].point[Option]) ==== List.empty[Int].some
     }
 
     // Now with foldLeftM:
@@ -139,9 +139,9 @@ object day8 extends ChapterApp {
         } yield x
 
 
-      out(solveRPN("10 4 3 + 2 * -")) === (-4.0).some
-      out(solveRPN("1 2 * 4")) === none
-      out(solveRPN("1 8 garbage")) === none
+      out(solveRPN("10 4 3 + 2 * -")) ==== (-4.0).some
+      out(solveRPN("1 2 * 4")) ==== none
+      out(solveRPN("1 8 garbage")) ==== none
     }
   }
 
@@ -181,12 +181,12 @@ object day8 extends ChapterApp {
     val f = Kleisli { (x: Int) => (x + 1).some }     // Kleisli accepts f: A => M[B]
     val g = Kleisli { (x: Int) => (x * 100).some }
 
-    out(4.some >>= (f <=< g)) === 401.some
-    out(4.some >>= (f compose g)) === 401.some
+    out(4.some >>= (f <=< g)) ==== 401.some
+    out(4.some >>= (f compose g)) ==== 401.some
 
 
-    out(4.some >>= (f >=> g)) === 500.some
-    out(4.some >>= (f andThen g)) === 500.some
+    out(4.some >>= (f >=> g)) ==== 500.some
+    out(4.some >>= (f andThen g)) ==== 500.some
   }
 
   {
@@ -216,7 +216,7 @@ object day8 extends ChapterApp {
       b <- Reader { (_: Int) + 10 }
     } yield a + b
 
-    out(addStuff(3)) === 19
+    out(addStuff(3)) ==== 19
   }
 
   =============================================("Making monads")

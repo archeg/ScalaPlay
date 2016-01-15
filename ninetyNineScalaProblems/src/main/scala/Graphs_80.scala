@@ -289,8 +289,8 @@ object Graphs_80 extends ChapterApp {
     findPathsR(graph.nodes(from), List(from)).map(_.reverse)
   }
 
-  out(Digraph.fromString("[p>q/9, m>q/7, k, p>m/5]").findPaths('p', 'q')) === List(List('p', 'q'), List('p', 'm', 'q'))
-  out(p81_2(Digraph.fromString("[p>q/9, m>q/7, k, p>m/5]"), 'p', 'q')) === List(List('p', 'm', 'q'), List('p', 'q'))
+  out(Digraph.fromString("[p>q/9, m>q/7, k, p>m/5]").findPaths('p', 'q')) ==== List(List('p', 'q'), List('p', 'm', 'q'))
+  out(p81_2(Digraph.fromString("[p>q/9, m>q/7, k, p>m/5]"), 'p', 'q')) ==== List(List('p', 'm', 'q'), List('p', 'q'))
 
   --------------("P82. Cycle from a given node.")
   def p82[T, U](graph: GraphBase[T, U], target: T): List[List[T]] = {
@@ -355,7 +355,7 @@ object Graphs_80 extends ChapterApp {
         if isGraphConnected(newGraph)) yield newGraph
     }
 
-  out(p83(Graph.fromString("[a-b, b-c, a-c]"))) === List(Graph.fromString("[b-c, a-b]"), Graph.fromString("[a-c, a-b]"), Graph.fromString("[a-c, b-c]"))
+  out(p83(Graph.fromString("[a-b, b-c, a-c]"))) ==== List(Graph.fromString("[b-c, a-b]"), Graph.fromString("[a-c, a-b]"), Graph.fromString("[a-c, b-c]"))
 
   def p83_2(graph: Graph[Char, Char]): List[Graph[Char, Char]] = {
     def listEdgeEquals(l: List[graph.Edge], s: Set[graph.Edge]): Boolean =
@@ -389,7 +389,7 @@ object Graphs_80 extends ChapterApp {
     }
   }
 
-  out(p83_2(Graph.fromString("[a-b, b-c, a-c]"))) === List(Graph.fromString("[b-c, a-c]"), Graph.fromString("[a-b, a-c]"), Graph.fromString("[a-b, b-c]"))
+  out(p83_2(Graph.fromString("[a-b, b-c, a-c]"))) ==== List(Graph.fromString("[b-c, a-c]"), Graph.fromString("[a-b, a-c]"), Graph.fromString("[a-b, b-c]"))
 
   def p83_3[T, U](graph: Graph[T, U]) = {
     def edgeConnectsToGraph[T,U](e: graph.Edge, nodes: List[graph.Node]): Boolean =
@@ -408,7 +408,7 @@ object Graphs_80 extends ChapterApp {
     spanningTreesR(graph.edges, graph.nodes.values.toList.tail, Nil).distinct
   }
 
-  out(p83_3(Graph.fromString("[a-b, b-c, a-c]"))) === List(Graph.fromString("[a-c, b-c]"), Graph.fromString("[a-c, a-b]"), Graph.fromString("[b-c, a-b]"))
+  out(p83_3(Graph.fromString("[a-b, b-c, a-c]"))) ==== List(Graph.fromString("[a-c, b-c]"), Graph.fromString("[a-c, a-b]"), Graph.fromString("[b-c, a-b]"))
 
   --------------("P84. Construct the minimal spanning tree (with Prim's Algorithm)")
 
@@ -436,8 +436,8 @@ object Graphs_80 extends ChapterApp {
       ('c', 'e', 6), ('d', 'e', 7), ('d', 'f', 4), ('d', 'g', 3),
       ('e', 'h', 5), ('f', 'g', 4), ('g', 'h', 1)))
 
-  out(p84(t_84)) === Graph.fromStringNum("[g-h/1, b-e/4, f-g/4, e-h/5, d-g/3, a-d/3, b-c/2]")
-  out(p84(Graph.fromStringNum("[a-b/1, b-c/2, a-c/3]"))) === Graph.fromStringNum("[a-b/1, b-c/2]")
+  out(p84(t_84)) ==== Graph.fromStringNum("[g-h/1, b-e/4, f-g/4, e-h/5, d-g/3, a-d/3, b-c/2]")
+  out(p84(Graph.fromStringNum("[a-b/1, b-c/2, a-c/3]"))) ==== Graph.fromStringNum("[a-b/1, b-c/2]")
 
 
   --------------("P85. Graph isomorphism.")
@@ -579,7 +579,7 @@ object Graphs_80 extends ChapterApp {
     inner(p88(g).flatMap(x => x.edges.map(y => y.n1.value -> y.n2.value)), Set.empty, Set.empty)
   }
 
-  out(p89(Graph.fromString("[a-b, b-c, c-a]"))) === false
-  out(p89(Graph.fromString("[a-b, b-c, d]"))) === true
-  out(p89(Graph.fromString("[a-b, b-c, d, e-f, f-g, g-e, h]"))) === false
+  out(p89(Graph.fromString("[a-b, b-c, c-a]"))) ==== false
+  out(p89(Graph.fromString("[a-b, b-c, d]"))) ==== true
+  out(p89(Graph.fromString("[a-b, b-c, d, e-f, f-g, g-e, h]"))) ==== false
 }

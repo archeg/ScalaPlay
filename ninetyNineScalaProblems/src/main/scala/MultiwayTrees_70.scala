@@ -25,11 +25,11 @@ object MultiwayTrees_70 extends ChapterApp {
   --------------("P70C Count the nodes of a multiway tree.")
   def p70c[T](tree: MTree[T]): Int = 1 + tree.children.map(x => p70c(x)).sum
 
-  out(p70c(MTree('a', List(MTree('f'))))) === 2
+  out(p70c(MTree('a', List(MTree('f'))))) ==== 2
 
   def p70c2[T](tree: MTree[T]): Int = tree.children.foldLeft(1)(_ + p70c2(_))
 
-  out(p70c2(MTree('a', List(MTree('f'))))) === 2
+  out(p70c2(MTree('a', List(MTree('f'))))) ==== 2
 
   --------------("P70. Tree construction from a node string")
   def p70(str: String): MTree[Char] = p70(str.toList)
@@ -50,7 +50,7 @@ object MultiwayTrees_70 extends ChapterApp {
     MTree(str.head, splitToStrings(str.tail) map {p70(_)})
   }
 
-  out(p70("afg^^c^bd^e^^^")) === MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
+  out(p70("afg^^c^bd^e^^^")) ==== MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
 
   // Index out of range. Don't care, mine variant is better.
 //  def p70_2(s: String): MTree[Char] = {
@@ -72,7 +72,7 @@ object MultiwayTrees_70 extends ChapterApp {
 
   --------------("P71. Determine the internal path length of a tree.")
   def p71[T](tree: MTree[T]): Int = tree.children.foldLeft(0)((a, x) => a + p71(x) + p70c(x))
-  out(p71(MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e', List(MTree('f'), MTree('g'), MTree('c'))))))))) === 18
+  out(p71(MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e', List(MTree('f'), MTree('g'), MTree('c'))))))))) ==== 18
 
   --------------("P72. Construct the postorder sequence of the nodes.")
   def p72(s: String): List[Char] = {
@@ -81,7 +81,7 @@ object MultiwayTrees_70 extends ChapterApp {
     inner(tree)
   }
 
-  out(p72("afg^^c^bd^e^^^")) === List('g', 'f', 'c', 'd', 'e', 'b', 'a')
+  out(p72("afg^^c^bd^e^^^")) ==== List('g', 'f', 'c', 'd', 'e', 'b', 'a')
 
   def p72_2(s: String): List[Char] = {
     import scala.collection.immutable.Queue
@@ -90,7 +90,7 @@ object MultiwayTrees_70 extends ChapterApp {
     inner(tree).toList
   }
 
-  out(p72_2("afg^^c^bd^e^^^")) === List('g', 'f', 'c', 'd', 'e', 'b', 'a')
+  out(p72_2("afg^^c^bd^e^^^")) ==== List('g', 'f', 'c', 'd', 'e', 'b', 'a')
 
   --------------("P73. Lisp-like tree representation.")
 
@@ -100,7 +100,7 @@ object MultiwayTrees_70 extends ChapterApp {
        else
         (tree.value :: (tree.children map {p73(_)})).mkString("(", " ", ")")
 
-  out(p73(p70("afg^^c^bd^e^^^"))) === "(a (f g) c (b d e))"
+  out(p73(p70("afg^^c^bd^e^^^"))) ==== "(a (f g) c (b d e))"
 
   def p73_back(str: String): MTree[Char] = {
     // takes "a (f g) c (b d e)" and turns it into List("a", "(f g)", "c", "(b d e)")
@@ -129,7 +129,7 @@ object MultiwayTrees_70 extends ChapterApp {
     p70(p)
   }
 
-  out(p73_back("(a (f g) c (b d e))")) === MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
+  out(p73_back("(a (f g) c (b d e))")) ==== MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
   def p73_back_2(s: String): MTree[Char] = {
     def setNesting(nesting: Int, c: Char): Int = c match {
       case '(' => nesting + 1
@@ -155,6 +155,6 @@ object MultiwayTrees_70 extends ChapterApp {
     }
   }
 
-  out(p73_back_2("(a (f g) c (b d e))")) === MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
+  out(p73_back_2("(a (f g) c (b d e))")) ==== MTree('a', List(MTree('f', List(MTree('g'))), MTree('c'), MTree('b', List(MTree('d'), MTree('e')))))
 
 }

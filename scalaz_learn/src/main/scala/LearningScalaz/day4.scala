@@ -16,14 +16,14 @@ object day4 extends ChapterApp {
     // properties and behaviors. ... The first functor law states that if we map the id function over a functor,
     // the functor that we get back should be the same as the original functor.
 
-    out(List(1, 2, 3) map identity) === List(1, 2, 3)
+    out(List(1, 2, 3) map identity) ==== List(1, 2, 3)
 
     // The second law says that composing two functions and then mapping the resulting function over a functor
     // should be the same as first mapping mapping one function over the functor and then mapping the other one.
 
     out(List(1, 2, 3) map {
       {(_: Int) * 3} map {(_: Int) + 1}
-    }) === (List(1, 2, 3) map {(_: Int) * 3} map {(_: Int) + 1})
+    }) ==== (List(1, 2, 3) map {(_: Int) * 3} map {(_: Int) + 1})
     // A bit hard to read this: it's A map (B map C) == A map B map C
 
     trait FunctorLawExample[F[_]] extends Functor[F] {
@@ -41,8 +41,8 @@ object day4 extends ChapterApp {
     // But there exists FunctorLaw
 
     // We can check it manually directly.
-    out(Functor[List].functorLaw.identity(List(1, 2, 3))) === true
-    out(Functor[List].functorLaw.composite(List(1, 2, 3), (x: Int) => x * 3, (x: Int) => x + 1)) === true
+    out(Functor[List].functorLaw.identity(List(1, 2, 3))) ==== true
+    out(Functor[List].functorLaw.composite(List(1, 2, 3), (x: Int) => x * 3, (x: Int) => x + 1)) ==== true
   }
 
   // Or we can test it in sbt test:console:
@@ -72,8 +72,8 @@ object day4 extends ChapterApp {
       }
     }
 
-    out((CSome(0, "ho"): COption[String]) map {(_: String) + "ha"}) === CSome(1, "hoha")
-    out((CSome(0, "ho"): COption[String]) map {identity}) === CSome(1, "ho")    // A map {identity} != A, breaking first law
+    out((CSome(0, "ho"): COption[String]) map {(_: String) + "ha"}) ==== CSome(1, "hoha")
+    out((CSome(0, "ho"): COption[String]) map {identity}) ==== CSome(1, "ho")    // A map {identity} != A, breaking first law
   }
 
   firstLawBreak
@@ -158,13 +158,13 @@ object day4 extends ChapterApp {
   // This law is simple, we can |+| (mappend) identity value to either left hand side
   // or right hand side.
 
-  out(1 * 2) === 2
-  out(2 * 1) === 2
+  out(1 * 2) ==== 2
+  out(2 * 1) ==== 2
 
   // With Scalaz
 
-  out(Monoid[Int @@ Tags.Multiplication].zero |+| Tags.Multiplication(2)) === 2
-  out(Tags.Multiplication(2) |+| Monoid[Int @@ Tags.Multiplication].zero) === 2
+  out(Monoid[Int @@ Tags.Multiplication].zero |+| Tags.Multiplication(2)) ==== 2
+  out(Tags.Multiplication(2) |+| Monoid[Int @@ Tags.Multiplication].zero) ==== 2
 
   =============================================("Option as Monoid")
 
@@ -191,8 +191,8 @@ object day4 extends ChapterApp {
 
     // The implementation is nica and simple. Bound A: Semigroup says that A must support |+|
 
-    out(none[String] |+| "andy".some) === "andy".some
-    out((Ordering.LT: Ordering).some |+| none[Ordering]) === Ordering.LT.some
+    out(none[String] |+| "andy".some) ==== "andy".some
+    out((Ordering.LT: Ordering).some |+| none[Ordering]) ==== Ordering.LT.some
 
     // works!
   }
@@ -207,19 +207,19 @@ object day4 extends ChapterApp {
     // Haskell is using newtype to implement First type constructor.
     // Scalaz 7 does it using mightly Tagged type:
 
-    out(Tags.First('a'.some) |+| Tags.First('b'.some)) === Tags.First('a'.some)
-    out(Tags.First(none[Char]) |+| Tags.First('b'.some)) === Tags.First('b'.some)
-    out(Tags.First('a'.some) |+| Tags.First(none[Char])) === Tags.First('a'.some)
-    out(Tags.First(none[Char]) |+| Tags.First(none[Char])) === Tags.First(none[Char])
+    out(Tags.First('a'.some) |+| Tags.First('b'.some)) ==== Tags.First('a'.some)
+    out(Tags.First(none[Char]) |+| Tags.First('b'.some)) ==== Tags.First('b'.some)
+    out(Tags.First('a'.some) |+| Tags.First(none[Char])) ==== Tags.First('a'.some)
+    out(Tags.First(none[Char]) |+| Tags.First(none[Char])) ==== Tags.First(none[Char])
 
     // LYAHFGG:
     // If we want a monoid on 'Maybe a' such that the second parameter is kept if both
     // parameters of mappend are `Just` values, Data.Monoid provides `a` the `Last a` type
 
-    out(Tags.Last('a'.some) |+| Tags.Last('b'.some)) === Tags.Last('b'.some)
-    out(Tags.Last(none[Char]) |+| Tags.Last('b'.some)) === Tags.Last('b'.some)
-    out(Tags.Last('a'.some) |+| Tags.Last(none[Char])) === Tags.Last('a'.some)
-    out(Tags.Last(none[Char]) |+| Tags.Last(none[Char])) === Tags.Last(none[Char])
+    out(Tags.Last('a'.some) |+| Tags.Last('b'.some)) ==== Tags.Last('b'.some)
+    out(Tags.Last(none[Char]) |+| Tags.Last('b'.some)) ==== Tags.Last('b'.some)
+    out(Tags.Last('a'.some) |+| Tags.Last(none[Char])) ==== Tags.Last('a'.some)
+    out(Tags.Last(none[Char]) |+| Tags.Last(none[Char])) ==== Tags.Last(none[Char])
   }
 
   =============================================("Foldable")
@@ -245,9 +245,9 @@ object day4 extends ChapterApp {
 
     {
       // From original scala library:
-      out(List(1, 2, 3).foldRight(1){_ * _}) === 6
+      out(List(1, 2, 3).foldRight(1){_ * _}) ==== 6
       // From scalaz FoldableOps:
-      out(9.some.foldLeft(2){_ + _}) === 11
+      out(9.some.foldLeft(2){_ + _}) ==== 11
     }
 
     {
@@ -257,8 +257,8 @@ object day4 extends ChapterApp {
       // Since we can't assume that Foldable contains a monoid, we need a function to change
       // from A => B, where [B: Monoid]
 
-      out(List(1, 2, 3) foldMap identity) === 6
-      out(List(true, false, true, true) foldMap {Tags.Disjunction.apply}) === true
+      out(List(1, 2, 3) foldMap identity) ==== 6
+      out(List(true, false, true, true) foldMap {Tags.Disjunction.apply}) ==== true
     }
   }
 }

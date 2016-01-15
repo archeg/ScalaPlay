@@ -23,7 +23,7 @@ object MainBefore46 extends ChapterApp {
 
   def p01(l: List[Int]) = l.last
 
-  out(p01(List(1, 1, 2, 3, 5, 8))) === 8
+  out(p01(List(1, 1, 2, 3, 5, 8))) ==== 8
 
   def p01_2(l: List[Int]): Int = l match {
     case last :: Nil => last
@@ -31,12 +31,12 @@ object MainBefore46 extends ChapterApp {
     case _         => throw new NoSuchElementException
   }
 
-  out(p01_2(List(1, 1, 2, 3, 5, 8))) === 8
+  out(p01_2(List(1, 1, 2, 3, 5, 8))) ==== 8
   --------------("P02. Find the last but one element of a list")
 
   def p02(l: List[Int]) = l.takeRight(2).head
 
-  out(p02(List(1, 1, 2, 3, 5, 8))) === 5
+  out(p02(List(1, 1, 2, 3, 5, 8))) ==== 5
 
   def p02_2(l: List[Int]): Int = l match {
     case before :: _ :: Nil => before
@@ -44,17 +44,17 @@ object MainBefore46 extends ChapterApp {
     case _         => throw new NoSuchElementException
   }
 
-  out(p02_2(List(1, 1, 2, 3, 5, 8))) === 5
+  out(p02_2(List(1, 1, 2, 3, 5, 8))) ==== 5
 
   def p02_3(l: List[Int]) = l.init.last
 
-  out(p02_3(List(1, 1, 2, 3, 5, 8))) === 5
+  out(p02_3(List(1, 1, 2, 3, 5, 8))) ==== 5
 
   --------------("P03. Find the Kth element of a list.")
 
   def p03(l: List[Int], k: Int) = l(k)
 
-  out(p03(List(1, 1, 2, 3, 5, 8), 2)) === 2
+  out(p03(List(1, 1, 2, 3, 5, 8), 2)) ==== 2
 
   def p03_2(l: List[Int], k: Int) = {
     def searcher(l: List[Int], p: Int): Int =
@@ -63,7 +63,7 @@ object MainBefore46 extends ChapterApp {
     searcher(l, 0)
   }
 
-  out(p03_2(List(1, 1, 2, 3, 5, 8), 2)) === 2
+  out(p03_2(List(1, 1, 2, 3, 5, 8), 2)) ==== 2
 
   def p03_3(l: List[Int], k: Int): Int = (k, l) match {
     case (0, h :: _)    => h
@@ -71,20 +71,20 @@ object MainBefore46 extends ChapterApp {
     case (_, Nil)       => throw new NoSuchElementException
   }
 
-  out(p03_3(List(1, 1, 2, 3, 5, 8), 2)) === 2
+  out(p03_3(List(1, 1, 2, 3, 5, 8), 2)) ==== 2
 
   --------------("P04. Find the number of elements of a list.")
 
   def p04(l: List[Int]) = l.length
 
-  out(p04(List(1, 1, 2, 3, 5, 8))) === 6
+  out(p04(List(1, 1, 2, 3, 5, 8))) ==== 6
 
   def p04_2(l: List[Int]): Int = l match {
     case _ :: tail => p04_2(tail) + 1
     case _ => 0
   }
 
-  out(p04_2(List(1, 1, 2, 3, 5, 8))) === 6
+  out(p04_2(List(1, 1, 2, 3, 5, 8))) ==== 6
 
   def p04_3(l: List[Int]): Int = {
     @tailrec
@@ -96,17 +96,17 @@ object MainBefore46 extends ChapterApp {
     searcher(l, 0)
   }
 
-  out(p04_3(List(1, 1, 2, 3, 5, 8))) === 6
+  out(p04_3(List(1, 1, 2, 3, 5, 8))) ==== 6
 
   def p04_4(l: List[Int]) = l.foldLeft(0)((c, _) => c + 1)
 
-  out(p04_4(List(1, 1, 2, 3, 5, 8))) === 6
+  out(p04_4(List(1, 1, 2, 3, 5, 8))) ==== 6
 
   --------------("P05. Reverse a list.")
 
   def p05(l: List[Int]) = l.reverse
 
-  out(p05(List(1, 1, 2, 3, 5, 8))) === List(8, 5, 3, 2, 1, 1)
+  out(p05(List(1, 1, 2, 3, 5, 8))) ==== List(8, 5, 3, 2, 1, 1)
 
   // O(n^2)
   def p05_2(l: List[Int]): List[Int] = l match {
@@ -114,7 +114,7 @@ object MainBefore46 extends ChapterApp {
     case Nil => Nil
   }
 
-  out(p05_2(List(1, 1, 2, 3, 5, 8))) === List(8, 5, 3, 2, 1, 1)
+  out(p05_2(List(1, 1, 2, 3, 5, 8))) ==== List(8, 5, 3, 2, 1, 1)
 
   def p05_3(l: List[Int]): List[Int] = {
     @tailrec
@@ -126,18 +126,18 @@ object MainBefore46 extends ChapterApp {
     inner(Nil, l)
   }
 
-  out(p05_3(List(1, 1, 2, 3, 5, 8))) === List(8, 5, 3, 2, 1, 1)
+  out(p05_3(List(1, 1, 2, 3, 5, 8))) ==== List(8, 5, 3, 2, 1, 1)
 
   // fun
   def p05_4(l: List[Int]) = l.foldLeft(List.empty[Int])((x, y) => y :: x)
 
-  out(p05_4(List(1, 1, 2, 3, 5, 8))) === List(8, 5, 3, 2, 1, 1)
+  out(p05_4(List(1, 1, 2, 3, 5, 8))) ==== List(8, 5, 3, 2, 1, 1)
 
   --------------("P06. Find out whether a list is a palindrome.")
 
   def p06(l: List[Int]): Boolean = l == l.reverse
 
-  out(p06(List(1, 2, 3, 2, 1))) === true
+  out(p06(List(1, 2, 3, 2, 1))) ==== true
 
   def p06_2(o: List[Int]): Boolean = {
     @tailrec
@@ -148,7 +148,7 @@ object MainBefore46 extends ChapterApp {
     inner(o, Nil)
   }
 
-  out(p06_2(List(1, 2, 3, 2, 1))) === true
+  out(p06_2(List(1, 2, 3, 2, 1))) ==== true
 
   --------------("P07. Flatten a nested list structure.")
 
@@ -157,7 +157,7 @@ object MainBefore46 extends ChapterApp {
     case x: Int => List(x)
   }
 
-  out(p07(List(List(1, 1), 2, List(3, List(5, 8))))) === List(1, 1, 2, 3, 5, 8)
+  out(p07(List(List(1, 1), 2, List(3, List(5, 8))))) ==== List(1, 1, 2, 3, 5, 8)
 
   --------------("P08. Eliminate consecutive duplicates of list elements")
 
@@ -172,14 +172,14 @@ object MainBefore46 extends ChapterApp {
     inner(l.tail, l.head)
   }
 
-  out(p08(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e))) === List('a, 'b, 'c, 'a, 'd, 'e)
+  out(p08(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e))) ==== List('a, 'b, 'c, 'a, 'd, 'e)
 
   def p08_2[A](l: List[A]): List[A] = l match {
     case Nil => Nil
     case h :: tail => h :: p08_2(l.dropWhile(_ == h))
   }
 
-  out(p08_2(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e))) === List('a, 'b, 'c, 'a, 'd, 'e)
+  out(p08_2(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e))) ==== List('a, 'b, 'c, 'a, 'd, 'e)
 
   def p08_3[A](l: List[A]) = {
     @tailrec
@@ -191,7 +191,7 @@ object MainBefore46 extends ChapterApp {
     inner(Nil, l)
   }
 
-  out(p08_3(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e))) === List('a, 'b, 'c, 'a, 'd, 'e)
+  out(p08_3(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e))) ==== List('a, 'b, 'c, 'a, 'd, 'e)
 
   --------------("P09. Pack consecutive duplicates of list elements into sublists.")
 
@@ -202,19 +202,19 @@ object MainBefore46 extends ChapterApp {
       before :: p09(after)
   }
 
-  out(p09(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) === List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
+  out(p09(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) ==== List(List('a, 'a, 'a, 'a), List('b), List('c, 'c), List('a, 'a), List('d), List('e, 'e, 'e, 'e))
 
   --------------("P10. Run-length encoding of a list using P09")
 
   def p10[A](l: List[A]) = p09(l) map { x => (x.length, x.head) }
 
-  out(p10(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) === List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
+  out(p10(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) ==== List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
 
   --------------("P11 Modified run-length encoding.")
 
   def p11[A](l: List[A]) = p09(l) map { x => if (x.length == 1) x.head else (x.length, x.head) }
 
-  out(p11(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) === List((4, 'a), 'b, (2, 'c), (2, 'a), 'd, (4, 'e))
+  out(p11(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) ==== List((4, 'a), 'b, (2, 'c), (2, 'a), 'd, (4, 'e))
 
   def p11_2[A](l: List[A]) = p09(l) map { x => if (x.length == 1) Left(x.head) else Right(x.length, x.head) }
 
@@ -222,7 +222,7 @@ object MainBefore46 extends ChapterApp {
 
   def p12[A](l: List[(Int, A)]) = l flatMap { case (i, x) => List.fill(i)(x) }
 
-  out(p12(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))) === List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+  out(p12(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))) ==== List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
 
   def p12_2[A](l: List[(Int, A)]): List[A] = l match {
     case Nil => Nil
@@ -230,7 +230,7 @@ object MainBefore46 extends ChapterApp {
     case (x, a) :: tail => a :: p12_2((x - 1, a) :: tail)
   }
 
-  out(p12_2(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))) === List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+  out(p12_2(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))) ==== List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
 
   --------------("P13. Run-length encoding of a list (direct solution")
 
@@ -242,22 +242,22 @@ object MainBefore46 extends ChapterApp {
       (before.length, before.head) :: p13(after)
     }
 
-  out(p13(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) === List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
+  out(p13(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))) ==== List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))
 
   --------------("P14. Duplicate the elements of a list")
 
   def p14[A](l: List[A]) = l flatMap { x => List(x, x) }
-  out(p14(List('a, 'b, 'c, 'c, 'd))) === List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
+  out(p14(List('a, 'b, 'c, 'c, 'd))) ==== List('a, 'a, 'b, 'b, 'c, 'c, 'c, 'c, 'd, 'd)
 
   --------------("P15. Duplicate the elements of a list a given number of times")
 
   def p15[A](times: Int, l: List[A]) = l flatMap { x => List.fill(times)(x)}
-  out(p15(3, List('a, 'b, 'c, 'c, 'd))) === List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
+  out(p15(3, List('a, 'b, 'c, 'c, 'd))) ==== List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
 
   --------------("P16. Drop every Nth element from a list")
 
   def p16[A](times: Int, l: List[A]) = l.zipWithIndex.filter { case (x, i) => (i + 1) % times != 0 } map { case (x, i) => x }
-  out(p16(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) === List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+  out(p16(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) ==== List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
 
   def p16_2[A](times: Int, l: List[A]) = {
     def inner(l: List[A], counter: Int): List[A] = (l, counter) match {
@@ -269,7 +269,7 @@ object MainBefore46 extends ChapterApp {
     inner(l, 1)
   }
 
-  out(p16_2(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) === List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+  out(p16_2(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) ==== List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
   def p16_3[A](times: Int, l: List[A]) = {
     @tailrec
     def inner(l: List[A], counter: Int, result: List[A]): List[A] = (l, counter) match {
@@ -281,13 +281,13 @@ object MainBefore46 extends ChapterApp {
     inner(l, 1, Nil)
   }
 
-  out(p16_3(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) === List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
+  out(p16_3(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) ==== List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
 
 
   --------------("P17. Split a list into two parts.")
 
   def p17[A](k: Int, l: List[A]) = l.splitAt(k)
-  out(p17(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) === (List('a, 'b, 'c), List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+  out(p17(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) ==== (List('a, 'b, 'c), List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
 
   def p17_2[A](k: Int, l: List[A]) = {
     @tailrec
@@ -300,12 +300,12 @@ object MainBefore46 extends ChapterApp {
     inner(l, 0, (Nil, Nil))
   }
 
-  out(p17_2(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) === (List('a, 'b, 'c), List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+  out(p17_2(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) ==== (List('a, 'b, 'c), List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
 
   --------------("P18. Extract a slice from a list.")
 
   def p18[A](i: Int, k: Int, l: List[A]) = l.slice(i, k)
-  out(p18(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)))  === List('d, 'e, 'f, 'g)
+  out(p18(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)))  ==== List('d, 'e, 'f, 'g)
 
   def p18_2[A](i: Int, k: Int, l: List[A]) = {
     @tailrec
@@ -319,7 +319,7 @@ object MainBefore46 extends ChapterApp {
     inner(0, l, Nil)
   }
 
-  out(p18_2(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)))  === List('d, 'e, 'f, 'g)
+  out(p18_2(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)))  ==== List('d, 'e, 'f, 'g)
 
   def p18_3[A](i: Int, k: Int, l: List[A]) =
     l drop i take (k - (i max 0))
@@ -331,18 +331,18 @@ object MainBefore46 extends ChapterApp {
     else
       (l takeRight -n) ::: (l dropRight -n)
 
-  out(p19(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) === List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c)
-  out(p19(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) === List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
+  out(p19(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) ==== List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c)
+  out(p19(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) ==== List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
 
   --------------("P20. Remove the Kth element from a list.")
 
   def p20[A](k: Int, l: List[A]) = ((l take k) ::: (l drop k + 1)) -> l(k)
-  out(p20(1, List('a, 'b, 'c, 'd))) === (List('a, 'c, 'd), 'b)
+  out(p20(1, List('a, 'b, 'c, 'd))) ==== (List('a, 'c, 'd), 'b)
 
   def p20_2[A](k: Int, l: List[A]) = l.splitAt(k) match {
     case (before, head :: tail) => (before ::: tail, head)
   }
-  out(p20_2(1, List('a, 'b, 'c, 'd))) === (List('a, 'c, 'd), 'b)
+  out(p20_2(1, List('a, 'b, 'c, 'd))) ==== (List('a, 'c, 'd), 'b)
 
   --------------("P21. Insert an element at a given position into a list.")
 
@@ -350,7 +350,7 @@ object MainBefore46 extends ChapterApp {
     case (before, after) => before ::: List(a) ::: after
   }
 
-  out(p21('new, 1, List('a, 'b, 'c, 'd))) === List('a, 'new, 'b, 'c, 'd)
+  out(p21('new, 1, List('a, 'b, 'c, 'd))) ==== List('a, 'new, 'b, 'c, 'd)
 
   def p21_2[A](a: A, p: Int, l: List[A]): List[A] = {
     def inner(l: List[A], pos: Int): List[A] = (l, pos) match {
@@ -361,7 +361,7 @@ object MainBefore46 extends ChapterApp {
 
     inner(l, 0)
   }
-  out(p21_2('new, 1, List('a, 'b, 'c, 'd))) === List('a, 'new, 'b, 'c, 'd)
+  out(p21_2('new, 1, List('a, 'b, 'c, 'd))) ==== List('a, 'new, 'b, 'c, 'd)
   def p21_3[A](a: A, p: Int, l: List[A]): List[A] = {
     @tailrec
     def inner(l: List[A], pos: Int, result: List[A]): List[A] = (l, pos) match {
@@ -372,11 +372,11 @@ object MainBefore46 extends ChapterApp {
 
     inner(l, 0, Nil)
   }
-  out(p21_3('new, 1, List('a, 'b, 'c, 'd))) === List('a, 'new, 'b, 'c, 'd)
+  out(p21_3('new, 1, List('a, 'b, 'c, 'd))) ==== List('a, 'new, 'b, 'c, 'd)
 
   --------------("P22. Create a list containing all integers within a given range.")
   def p22(x: Int, y: Int) = x to y   // Returns Range.
-  out(p22(4, 9)) === List(4, 5, 6, 7, 8, 9)
+  out(p22(4, 9)) ==== List(4, 5, 6, 7, 8, 9)
 
   def p22_2(x: Int, y: Int): List[Int] =
     if (x != y)
@@ -384,7 +384,7 @@ object MainBefore46 extends ChapterApp {
     else
       List(y)
 
-  out(p22_2(4, 9)) === List(4, 5, 6, 7, 8, 9)
+  out(p22_2(4, 9)) ==== List(4, 5, 6, 7, 8, 9)
   def p22_3(x: Int, y: Int): List[Int] = {
     @tailrec
     def inner(x: Int, y: Int, result: List[Int]): List[Int] =
@@ -394,7 +394,7 @@ object MainBefore46 extends ChapterApp {
         (y :: result).reverse
     inner(x, y, Nil)
   }
-  out(p22_3(4, 9)) === List(4, 5, 6, 7, 8, 9)
+  out(p22_3(4, 9)) ==== List(4, 5, 6, 7, 8, 9)
 
   --------------("P23. Extract a given number of randomly selected elements from a list via P20")
   def p23[A](n: Int, a: List[A]): List[A] =
@@ -525,7 +525,7 @@ object MainBefore46 extends ChapterApp {
     l map (x => l.count(_.length == x.length) -> x) sortBy {case (len, _) => len } map { _._2 }
 
   val p28_m_answer = List(List('i, 'j, 'k, 'l), List('o), List('a, 'b, 'c), List('f, 'g, 'h), List('d, 'e), List('d, 'e), List('m, 'n))
-  out(p28_m(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))) === p28_m_answer
+  out(p28_m(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))) ==== p28_m_answer
 
 
   // O(n * logn)
@@ -539,47 +539,47 @@ object MainBefore46 extends ChapterApp {
     l.sortBy(x => array(x.length))                                 // O(n*logn)
   }
 
-  out(p28_2m(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))) === p28_m_answer
+  out(p28_2m(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))) ==== p28_m_answer
 
   def p28_3m[A](ls: List[List[A]]): List[List[A]] = {
     val freqs = Map(p10(ls map { _.length } sorted) map { _.swap }:_*)
     ls sortBy { x => freqs(x.length) }
   }
 
-  out(p28_3m(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))) === p28_m_answer
+  out(p28_3m(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))) ==== p28_m_answer
 
 
   =============================================("Arithmetic")
 
   --------------("P31. Determine whether a given integer number is prime.")
   def p31(n: Int) = (2 to math.sqrt(n).toInt).forall(n % _ != 0)
-  out(p31(7)) === true
-  out(p31(8)) === false
+  out(p31(7)) ==== true
+  out(p31(8)) ==== false
 
   // Fermat. Unproven? Doesn't work in all the cases.
   def fib(n: Int): Int = n match { case x if x <= 2 => 1; case x => fib(x - 1) + fib(x - 2)}
   def p31_2(n: Int) = math.pow(2, n - 1) % n == 1 & fib(n + 1) % n == 0
-  out(p31_2(7)) === true
-  out(p31_2(8)) === false
+  out(p31_2(7)) ==== true
+  out(p31_2(8)) ==== false
 
   --------------("P32. Determine the greatest common divisor of two positive integer numbers.")
   @tailrec
   def p32(a: Int, b: Int): Int = if (b == 0) a else p32(b, a % b)
-  out(p32(36, 63)) === 9
+  out(p32(36, 63)) ==== 9
 
   --------------("P33. Determine whether two positive integer numbers are coprime.")
   def p33(a: Int, b: Int) = p32(a, b) == 1
-  out(p33(35, 64)) === true
+  out(p33(35, 64)) ==== true
 
   implicit class Coprime(a: Int) {
     def isCoprimeTo(b: Int) = p32(a, b) == 1
   }
 
-  out(35.isCoprimeTo(64)) === true
+  out(35.isCoprimeTo(64)) ==== true
 
   --------------("P34. Calculate Euler's totient function phi(m)")
   def p34(m: Int) = (1 to m).count(_.isCoprimeTo(m))
-  out(p34(10)) === 4
+  out(p34(10)) ==== 4
 
   --------------("P35. Determine the prime factors of a given positive integer.")
   // Stupid approach.
@@ -588,7 +588,7 @@ object MainBefore46 extends ChapterApp {
     case Some(x) => x :: p35(m / x)
   }
 
-  out(p35(315)) === List(3, 3, 5, 7)
+  out(p35(315)) ==== List(3, 3, 5, 7)
 
   // Just a bit cleverer
   def p35_2(m: Int): List[Int] = {
@@ -599,7 +599,7 @@ object MainBefore46 extends ChapterApp {
 
     inner(m, 2)
   }
-  out(p35_2(315)) === List(3, 3, 5, 7)
+  out(p35_2(315)) ==== List(3, 3, 5, 7)
 
   --------------("P36. Determine the prime factors of a given positive integer.")
   def p36(m: Int): List[(Int, Int)] = p35_2(m).foldLeft(List.empty[(Int, Int)]) {
@@ -608,11 +608,11 @@ object MainBefore46 extends ChapterApp {
     case (list, y) => (y, 1) :: list
   }.reverse
 
-  out(p36(315)) === List((3, 2), (5, 1), (7, 1))
+  out(p36(315)) ==== List((3, 2), (5, 1), (7, 1))
 
   def p36_m(m: Int) = p36(m).toMap
 
-  out(p36_m(315)) === Map(3 -> 2, 5 -> 1, 7 -> 1)
+  out(p36_m(315)) ==== Map(3 -> 2, 5 -> 1, 7 -> 1)
 
   --------------("P37. Calculate Euler's totient function phi(m) (improved)")
   // Euler's so-called totient function phi(m) is defined as the number of positive integers r (1 <= r <= m) that are coprime to m.
@@ -621,14 +621,14 @@ object MainBefore46 extends ChapterApp {
     case (acc, (p, m)) => acc * (p - 1) * math.pow(p, m - 1).toInt
   }
 
-  out(p37(10)) === 4
+  out(p37(10)) ==== 4
 
   --------------("P38. Compare the two methods of calculating Euler's totient function.")
   time("P34") {
-    out(p34(1009000)) === 403200
+    out(p34(1009000)) ==== 403200
   }
   time("P37") {
-    out(p37(1009000)) === 403200
+    out(p37(1009000)) ==== 403200
   }
 
   --------------("P39. A list of prime numbers.")
@@ -636,7 +636,7 @@ object MainBefore46 extends ChapterApp {
   def p39(a: Int, b: Int): List[Int] =
     (a to b) filter { p31(_) } toList;
 
-  out(p39(7, 31)) === List(7, 11, 13, 17, 19, 23, 29, 31)
+  out(p39(7, 31)) ==== List(7, 11, 13, 17, 19, 23, 29, 31)
 
   // Eratosfen fun
   def p39_2(a: Int, b: Int): List[Int] = {
@@ -651,7 +651,7 @@ object MainBefore46 extends ChapterApp {
     (map filter {_ >= a}).toList
   }
 
-  out(p39_2(7, 31)) === List(7, 11, 13, 17, 19, 23, 29, 31)
+  out(p39_2(7, 31)) ==== List(7, 11, 13, 17, 19, 23, 29, 31)
 
   // Eratosfen fun2
   def p39_3(a: Int, b: Int): List[Int] = {
@@ -666,7 +666,7 @@ object MainBefore46 extends ChapterApp {
     (map.zipWithIndex map { case (x, i) => if (x && i >= a) {i} else {0}} filter { _ != 0 }).toList // With ListBuffer works 3/4 as fast
   }
 
-  out(p39_3(7, 31)) === List(7, 11, 13, 17, 19, 23, 29, 31)
+  out(p39_3(7, 31)) ==== List(7, 11, 13, 17, 19, 23, 29, 31)
 
   // Structural eratosfen
   def p39_4(a: Int, b: Int): List[Int] = {
@@ -702,7 +702,7 @@ object MainBefore46 extends ChapterApp {
     primes dropWhile { _ < a } takeWhile { _ <= b } toList
   }
 
-  out(p39_4(7, 31)) === List(7, 11, 13, 17, 19, 23, 29, 31)
+  out(p39_4(7, 31)) ==== List(7, 11, 13, 17, 19, 23, 29, 31)
 
   var result: List[Int] = _
   val a = 56
@@ -712,19 +712,19 @@ object MainBefore46 extends ChapterApp {
   }
 
   _time("Eratosfen fun") {
-    asrt(p39_2(a, b)) === result
+    asrt(p39_2(a, b)) ==== result
   }
 
   time("Eratosfen fun2") {
-    asrt(p39_3(a, b)) === result
+    asrt(p39_3(a, b)) ==== result
   }
 
   time("Eratosfen struct") {
-    asrt(p39_4(a, b)) === result
+    asrt(p39_4(a, b)) ==== result
   }
 
   time("From link") {
-    asrt(p39_5(a, b)) === result
+    asrt(p39_5(a, b)) ==== result
   }
 
   --------------("P40. Goldbach's conjecture.")
@@ -733,7 +733,7 @@ object MainBefore46 extends ChapterApp {
     (first, a - first)
   }
 
-  out(p40(28)) === (5, 23)
+  out(p40(28)) ==== (5, 23)
   def p40_2(a: Int) = ((2 to a).view filter { x => p31(x) && p31(a - x) }).head match {
     case x => (x, a - x)
   }
@@ -744,7 +744,7 @@ object MainBefore46 extends ChapterApp {
       case Some(p1) => (p1, start - p1)
     }
 
-  out(p40_2(28)) === (5, 23)
+  out(p40_2(28)) ==== (5, 23)
   val ask = 587288
   var result_p40: (Int, Int) = _
   time("Simple") {
@@ -752,10 +752,10 @@ object MainBefore46 extends ChapterApp {
     out(result_p40)
   }
   time("Simple with view") {
-    asrt(p40_2(ask)) === result_p40
+    asrt(p40_2(ask)) ==== result_p40
   }
   time("From link (find)") {
-    asrt(p40_3(ask)) === result_p40
+    asrt(p40_3(ask)) ==== result_p40
   }
   val ask_p40_2 = 1237128938
 
@@ -763,7 +763,7 @@ object MainBefore46 extends ChapterApp {
     result_p40 = p40_2(ask_p40_2)
   }
   time("Second: From link (find)") {
-    asrt(p40_3(ask_p40_2)) === result_p40
+    asrt(p40_3(ask_p40_2)) ==== result_p40
   }
 
   --------------("P41. A list of Goldbach compositions.")
