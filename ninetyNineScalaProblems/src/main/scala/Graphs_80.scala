@@ -252,10 +252,10 @@ object Graphs_80 extends ChapterApp {
     graph
   }
 
-  out(p80("[b-c, f-c, g-h, d, f-b, k-f, h-g]")) ==! "[h-g, k-f, f-b, g-h, f-c, b-c, d]"
-  out(p80_2("[b>c, f>c, g>h, d, f<b, k<f, h<g]")) ==! "[g>h, f>k, b>f, g>h, f>c, b>c, d]"
-  out(p80("[b-c/e, f-c/1, g-h/2, d, f-b/3, k-f, h-g]")) ==! "[h-g, k-f, f-b/3, g-h/2, f-c/1, b-c/e, d]"
-  out(p80_2("[b>c/1, f>c/e, g>h/2, d, f<b, k<f, h<g/8]")) ==! "[g>h/8, f>k, b>f, g>h/2, f>c/e, b>c/1, d]"         // Notice g>h twice, once labeled 2, the other one - 8
+  out(p80("[b-c, f-c, g-h, d, f-b, k-f, h-g]")) ==@ "[h-g, k-f, f-b, g-h, f-c, b-c, d]"
+  out(p80_2("[b>c, f>c, g>h, d, f<b, k<f, h<g]")) ==@ "[g>h, f>k, b>f, g>h, f>c, b>c, d]"
+  out(p80("[b-c/e, f-c/1, g-h/2, d, f-b/3, k-f, h-g]")) ==@ "[h-g, k-f, f-b/3, g-h/2, f-c/1, b-c/e, d]"
+  out(p80_2("[b>c/1, f>c/e, g>h/2, d, f<b, k<f, h<g/8]")) ==@ "[g>h/8, f>k, b>f, g>h/2, f>c/e, b>c/1, d]"         // Notice g>h twice, once labeled 2, the other one - 8
 
   out(p80("[b-c, f-c, g-h, d, f-b, k-f, h-g]").toTermForm)
   out(Digraph.fromString("[p>q/9, m>q/7, k, p>m/5]").toAdjacentForm)
@@ -510,7 +510,7 @@ object Graphs_80 extends ChapterApp {
 
   def p86_2[T, U](g: Graph[T, U]): List[g.Node] = g.nodes.values.toList.sortBy(-_.adj.size)
 
-  out(p86_2(Graph.fromString("[a-b, b-c, a-c, a-d]"))) ==! "List(Node(a), Node(c), Node(b), Node(d))"
+  out(p86_2(Graph.fromString("[a-b, b-c, a-c, a-d]"))) ==@ "List(Node(a), Node(c), Node(b), Node(d))"
 
   def p86_3[T, U](g: Graph[T, U]): List[(g.Node, Int)] = {
     def inner(notColored: List[g.Node], color: Int) : List[(g.Node, Int)] =
@@ -546,7 +546,7 @@ object Graphs_80 extends ChapterApp {
     firstNode :: result
   }
 
-  out(p87(Graph.fromString("[a-b, b-c, e, a-c, a-d]"), 'd')) ==! "List(Node(d), Node(a), Node(c), Node(b))"
+  out(p87(Graph.fromString("[a-b, b-c, e, a-c, a-d]"), 'd')) ==@ "List(Node(d), Node(a), Node(c), Node(b))"
 
   --------------("P88. Connected components")
 
@@ -562,8 +562,8 @@ object Graphs_80 extends ChapterApp {
     }
   }
 
-  out(p88(Graph.fromString("[a-b, c]"))) ==! "List([c], [a-b])"
-  out(p88(Graph.fromString("[a-b, b-c, d-e]"))) ==! "List([d-e], [a-b, b-c])"
+  out(p88(Graph.fromString("[a-b, c]"))) ==@ "List([c], [a-b])"
+  out(p88(Graph.fromString("[a-b, b-c, d-e]"))) ==@ "List([d-e], [a-b, b-c])"
 
   --------------("P89. Bipartite graphs.")
 

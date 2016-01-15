@@ -41,7 +41,7 @@ lazy val ninetyNineScalaProblems = project.dependsOn(common)
 lazy val algoChallenges = project.dependsOn(common)
 lazy val taskSolving = project.dependsOn(common)
 lazy val whyScala = project.dependsOn(common, macrosExtension).settings {
-  libraryDependencies ++= parserDep ++ swingDep
+  libraryDependencies ++= parserDep ++ swingDep ++ scalazDep
 }
 lazy val generalLearning = project.dependsOn(common, macrosExtension).settings {
   libraryDependencies ++= parserDep ++ swingDep ++ xmlDep

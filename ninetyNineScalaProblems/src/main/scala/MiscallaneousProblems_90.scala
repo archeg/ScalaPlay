@@ -167,7 +167,7 @@ object MiscallaneousProblems_90 extends ChapterApp {
     }
   }
 
-  out(p92(Graph.fromString("[a-b]"))) ==! "Some([(a,2)-(b,1)/1])"
+  out(p92(Graph.fromString("[a-b]"))) ==@ "Some([(a,2)-(b,1)/1])"
   out(p92(Graph.fromString("[a-b, a-c]")))
   out(p92(Graph.fromString("[a-b, b-c, b-d]")))
   //out(p92(Graph.fromString("[d-a, a-g, a-b, b-e, e-f, b-c]")))

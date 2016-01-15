@@ -33,10 +33,10 @@ object BinaryTrees_50 extends ChapterApp {
     case (x, y) => for (a <- p55(y, symbol); b <- p55(x, symbol)) yield Node(symbol, a, b)
   }
 
-  out(p55(1, "x")) ==! "List(T(x . .))"
-  out(p55(2, "x")) ==! "List(T(x T(x . .) .), T(x . T(x . .)))"
-  out(p55(3, "x")) ==! "List(T(x T(x . .) T(x . .)))"
-  out(p55(4, "x")) ==! "List(T(x T(x T(x . .) .) T(x . .)), T(x T(x . T(x . .)) T(x . .)), T(x T(x . .) T(x T(x . .) .)), T(x T(x . .) T(x . T(x . .))))"
+  out(p55(1, "x")) ==@ "List(T(x . .))"
+  out(p55(2, "x")) ==@ "List(T(x T(x . .) .), T(x . T(x . .)))"
+  out(p55(3, "x")) ==@ "List(T(x T(x . .) T(x . .)))"
+  out(p55(4, "x")) ==@ "List(T(x T(x T(x . .) .) T(x . .)), T(x T(x . T(x . .)) T(x . .)), T(x T(x . .) T(x T(x . .) .)), T(x T(x . .) T(x . T(x . .))))"
 
   def p55_2[T](nodes: Int, value: T): List[Tree[T]] = nodes match {
     case n if n < 1 => End :: Nil
@@ -51,7 +51,7 @@ object BinaryTrees_50 extends ChapterApp {
     }
   }
   // Same answer, but different order
-  out(p55_2(4, "x")) ==! "List(T(x T(x . .) T(x . T(x . .))), T(x T(x . T(x . .)) T(x . .)), T(x T(x . .) T(x T(x . .) .)), T(x T(x T(x . .) .) T(x . .)))"
+  out(p55_2(4, "x")) ==@ "List(T(x T(x . .) T(x . T(x . .))), T(x T(x . T(x . .)) T(x . .)), T(x T(x . .) T(x T(x . .) .)), T(x T(x T(x . .) .) T(x . .)))"
 
   --------------("P56. Symmetric binary trees.")
   def p56[T](tree: Tree[T]): Boolean = {

@@ -30,4 +30,5 @@ object Macros extends App {
   import MacrosFeatures.MacrosPrintTest._
   printf_test()
   // TODO: Type providers
+
 }

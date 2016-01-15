@@ -89,7 +89,7 @@ object day1 extends ChapterApp {
 
     out('a' |-> 'e') === List('a', 'b', 'c', 'd', 'e')
 
-    out('a' |=> 'e') ==? "scalaz.EphemeralStream"
+    out('a' |=> 'e') ==% "scalaz.EphemeralStream"
 
     out('b'.succ) === 'c'
 

@@ -21,7 +21,7 @@ object Main extends ChapterApp {
   println(xml)
 
   // Scala code can be embedded with { and }
-  val xml2 = <a> { String.join(",", "Hello", "World") }</a>
+  val xml2 = <a> { List(",", "Hello", "World").mkString }</a>
   println(xml2)
 
   val yearMda = 1955

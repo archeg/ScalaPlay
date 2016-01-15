@@ -200,7 +200,7 @@ object Functors extends ChapterApp {
   val f = (x: Int) => x + 1                     // Functor
   out(Option(5) map f) === Some(6)
   val g = (x: Int) => (y: Int) => x + y
-  out(Option(5) map g) ==! "Some(<function1>)"  // We received an applicative.
+  out(Option(5) map g) ==@ "Some(<function1>)"  // We received an applicative.
 
   val applicative = Option(5) map g
   // In scala Option is not an applicative. But if it was, we could have done this:
