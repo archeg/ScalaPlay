@@ -238,6 +238,7 @@ object day1_3_makingOurOwnTypesAndTypeClasses extends ChapterApp {
 
     {
       // This is a proper way to solve subclass typing ADT problem:
+      // http://stackoverflow.com/questions/34907387/typeclasses-and-inheritance-in-scalaz/34907891#34907891
       sealed abstract class Tree[+T]
       object Tree {
         private[this] case object EmptyTree extends Tree[Nothing]
@@ -258,7 +259,110 @@ object day1_3_makingOurOwnTypesAndTypeClasses extends ChapterApp {
       // scalaz is designed to solve this issue:
       out(List(1, 2, 3).foldLeft(0.some)((acc, i) => acc.map(_ + i)))
     }
+  }
 
+  =============================================("typeclasses 102")
 
+  {
+    abstract sealed class TrafficLight
+    case object Red extends TrafficLight
+    case object Yellow extends TrafficLight
+    case object Green extends TrafficLight
+
+    // I did this previously:
+    //implicit val eq = Equal.equalA[TrafficLight]
+    implicit val eq = Equal.equal[TrafficLight](_ == _) // But learning-scalaz proposes this syntaxes, which leaves us with a bit more control
+
+    illTyped("""Red === Yellow""")
+    // This is in fact the same problem that was described earlier.
+  }
+
+  {
+    // Proper implementation, as was shown above.
+
+    abstract sealed class TrafficLight
+
+    object TrafficLight {
+      private[this] case object Red extends TrafficLight
+      private[this] case object Yellow extends TrafficLight
+      private[this] case object Green extends TrafficLight
+
+      val red: TrafficLight = Red
+      val yellow: TrafficLight = Yellow
+      val green: TrafficLight = Green
+
+      implicit val eq = Equal.equalA[TrafficLight]
+      implicit val show = Show.showA[TrafficLight]
+    }
+
+    import TrafficLight._
+    out(red === yellow) ==== false
+    out(red === red) ==== true
+    out(red.shows) ==== "Red"
+  }
+
+  --------------("A yes-no typeclass")
+
+  {
+    // Ok, it is more complicated in scala than in Haskell
+    // type-class itself:
+    trait YesNo[T] {
+      def yesno(t:T): Boolean
+    }
+
+    // An accompanying object, same as it is usually done in scalaz. This allows to define type-class instances
+    object YesNo {
+      def yesno[T](f: T => Boolean) = new YesNo[T] {
+        override def yesno(t: T): Boolean = f(t)
+      }
+    }
+
+    // type-class ops. In short it repeats type-class, but is aware of `self`
+    trait YesNoOps[T] {
+      def self: T
+      def F: YesNo[T]
+      def yesno: Boolean = F.yesno(self)
+    }
+
+    // Implicit convertor to YesNoOps
+    object ToYesNoOps {
+      implicit def toYesNoOps[A](v: A)(implicit ev: YesNo[A]) = new YesNoOps[A] {
+        override def self: A = v
+        override def F: YesNo[A] = ev
+      }
+    }
+
+    implicit val yesNoInt = YesNo.yesno[Int](t => if (t == 0) false else true)
+    implicit val yesNoBool = YesNo.yesno[Boolean](identity)
+    import Maybe._
+    implicit def yesNoMaybe[T] = YesNo.yesno[Maybe[T]]{
+      case Just(_) => true
+      case Empty() => false
+    }
+
+    implicit def listYesNo[T] = YesNo.yesno[List[T]](_ => true)
+    // We need Nil case separately because of the problem described above and not being able
+    // to fix it in List[A] sources.
+    implicit val nilYesNo = YesNo.yesno[Nil.type](_ => false)
+
+    {
+      import ToYesNoOps._
+      out(3.yesno) ==== true
+      out(Maybe.just[Int](3).yesno) ==== true
+      out(Nil.yesno) ==== false
+    }
+
+    {
+      import ToYesNoOps._
+      // Let's make a function that mimics the if statemnet, but it works with YesNo values:
+      def yesnoIf[T : YesNo, R](t: T)(yesResult: => R, noResult: => R) =
+        if (t.yesno) yesResult else noResult
+
+      out(yesnoIf(0)("Yes", "No")) ==== "No"
+      out(yesnoIf(5)("Yes", "No")) ==== "Yes"
+    }
+
+    // http://learnyouahaskell.com/making-our-own-types-and-typeclasses
+    // Ctrl+F The Functor typeclass
   }
 }
