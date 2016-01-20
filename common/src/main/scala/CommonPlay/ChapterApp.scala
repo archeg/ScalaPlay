@@ -157,6 +157,8 @@ trait ChapterApp extends App {
       assert(a == b, s"Answer| Exprected :\r\n$a\r\n$b")
     }
 
+    def ==~(b: Double, eps: Double = 0.1)(implicit ev: <:<[T, Double]) = math.abs(a - b) < eps
+
     def ==@(b: Any) {
       assert(a.toString == b.toString, s"Answer| Exprected (toString comparison):\r\n$a\r\n$b")
     }
