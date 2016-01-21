@@ -364,5 +364,6 @@ object day1_3_makingOurOwnTypesAndTypeClasses extends ChapterApp {
 
     // http://learnyouahaskell.com/making-our-own-types-and-typeclasses
     // Ctrl+F The Functor typeclass
+
   }
 }
