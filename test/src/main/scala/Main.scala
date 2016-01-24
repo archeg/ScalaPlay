@@ -10,6 +10,4 @@ import scala.reflect.ClassTag
   * Created by archeg on 12/10/2015.
   */
 object Main extends ChapterApp {
-
-  import shapeless._
 }

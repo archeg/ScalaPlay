@@ -34,9 +34,15 @@ lazy val scalaz_learn = project.dependsOn(common).settings {
   }.settings {
   // For sbt test:console
   initialCommands in console in Test := "import scalaz._, Scalaz._, scalacheck.ScalazProperties._, scalacheck.ScalazArbitrary._,scalacheck.ScalaCheckBinding._"
+  unmanagedResourceDirectories in Compile <+= (baseDirectory) {_ / "files"}
 }
 
 lazy val test = project.dependsOn(common, macrosExtension)
+
+lazy val testPrint = project.settings {
+  scalacOptions ++= Seq("-print")
+}
+
 lazy val ninetyNineScalaProblems = project.dependsOn(common)
 lazy val algoChallenges = project.dependsOn(common)
 lazy val taskSolving = project.dependsOn(common)
