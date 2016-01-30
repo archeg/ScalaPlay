@@ -9,7 +9,8 @@ lazy val scalazDep = Seq(
   "org.scalaz" %% "scalaz-core" % scalazVersion,
   "org.scalaz" %% "scalaz-effect" % scalazVersion,
   //"org.scalaz" %% "scalaz-typelevel" % scalazVersion,
-  "org.scalaz" %% "scalaz-scalacheck-binding" % scalazVersion % "test"
+  "org.scalaz" %% "scalaz-scalacheck-binding" % scalazVersion % "test",
+  "org.spire-math" %% "spire" % "0.11.0"
 )
 
 lazy val swingDep = Seq("org.scala-lang.modules" %% "scala-swing" % "2.0.0-M2")
@@ -41,6 +42,8 @@ lazy val test = project.dependsOn(common, macrosExtension)
 
 lazy val testPrint = project.settings {
   scalacOptions ++= Seq("-print")
+}.settings {
+  libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.7"
 }
 
 lazy val ninetyNineScalaProblems = project.dependsOn(common)

@@ -3,12 +3,23 @@
   */
 object M {
    def main(args:Array[String]): Unit = {
-     val t = 5
-     test { println("Hello world"); t}
-   }
+     import scala.reflect.runtime.{universe => ru, _}
 
-  def test(a: => Int) = {
-    val t = 6
-    println("!!!!!!!!!" + a)
-  }
+     class Foo[T](val data: T)
+
+     def matchFoo[A: ru.TypeTag](foo: Foo[A]) = {
+       println("Is string = " + (ru.typeOf[A] =:= ru.typeOf[String]))
+       println("Is int = " + (ru.typeOf[A] =:= ru.typeOf[Int]))
+       val tt = ru.typeOf[A] =:= ru.typeOf[String]
+       foo match {
+         case fooStr: Foo[String @unchecked] if tt => println("Found String")
+         case fooInt: Foo[Int @unchecked] if ru.typeOf[A] =:= ru.typeOf[Int] => println("Found Int")
+       }
+     }
+
+     matchFoo(new Foo[String]("str"))
+     println("------------")
+     matchFoo(new Foo[Int](123))
+   }
 }
+
