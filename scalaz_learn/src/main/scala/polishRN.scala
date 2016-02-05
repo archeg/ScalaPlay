@@ -43,5 +43,4 @@ object polishRN extends ChapterApp {
   out(solveRPN[Double]("2 3 + 7.3 +"))
   out(solveRPN[Int]("2 3 + 7 +"))
   out(solveRPN[Double]("2 3 + ln 7 +"))
-
 }

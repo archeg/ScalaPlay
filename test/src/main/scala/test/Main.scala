@@ -7,12 +7,11 @@ import CommonPlay.ChapterApp
  */
 object Main extends ChapterApp {
 
-  def flatten(ls: List[_]): List[Int] = ls match {
-    case Nil => Nil
-    case (a: Int) :: tail => a :: flatten(tail)
-    case (a: List[_]) :: tail => flatten(a) ::: flatten(tail)
-    case _ :: tail => flatten(tail)
-  }
-
-  println(flatten(List(List("one",9,8),3,"str",4,List(true,77,3.2))))
+  import scala.collection.JavaConversions._
+//  class EnumerationProperty1[T <: Enumeration](val enum: T, val name: String) extends IProperty[enum.Value] {
+//    override def getName = name
+//    override def getValueClass = ???
+//    override def getName(value: enum.Value): String = value.toString
+//    override def getAllowedValues: java.util.Collection[enum.Value] = enum.values.toIterable
+//  }
 }

@@ -46,6 +46,12 @@ lazy val testPrint = project.settings {
   libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.7"
 }
 
+lazy val testTyper = project.dependsOn(common, macrosExtension).settings {
+  scalacOptions ++= Seq("–Xlog-implicits") //-Xprint:typer
+}.settings {
+  libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.7"
+}
+
 lazy val ninetyNineScalaProblems = project.dependsOn(common)
 lazy val algoChallenges = project.dependsOn(common)
 lazy val taskSolving = project.dependsOn(common)
